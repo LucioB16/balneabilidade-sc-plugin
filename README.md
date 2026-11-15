@@ -82,11 +82,15 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   review cases.
 - `scripts/build_plugin_archive.py`: produces a single-plugin ZIP only after a
   production MCP URL and verified submission facts are supplied.
-- `Dockerfile`, `requirements.txt`, and `main.py`: Docker and Enzonic Python
-  entry points sharing the same immutable MCP source commit.
+- `Dockerfile`, `requirements.txt`, `main.py` and `guard.py`: Docker and Enzonic
+  Python entry points using the same immutable MCP dependency, with a small
+  admission guard. The guard is **not active** on the current Enzonic instance
+  until the updated files are deployed.
 - `tests/` and `.github/workflows/ci.yml`: offline manifest and real MCP
   handshake validation against the pinned server.
 - `docs/`: Enzonic runbook, data-handling facts, and publication status.
+- `scripts/check_remote_mcp.py`: opt-in external HTTPS/MCP health check for
+  operator-controlled restart validation.
 
 The submission archive deliberately does not use an example, preview, or
 development URL. The builder requires real policy URLs, a verified publisher
