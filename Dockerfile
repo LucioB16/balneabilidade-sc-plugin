@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    BALNEABILIDADE_CACHE_DIR=/tmp/balneabilidade
+
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir --disable-pip-version-check -r requirements.txt
+
+EXPOSE 8000
+CMD ["balneabilidade-sc-mcp-http"]

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "balneabilidade-sc",
+  "version": "0.1.0",
+  "description": "Published IMA/SC bathing-water results for beaches in Santa Catarina, Brazil.",
+  "repository": "https://github.com/LucioB16/balneabilidade-sc-plugin",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Balneabilidade SC",
+        "shortDescription": "Official bathing data for SC",
+        "longDescription": "Check IMA/SC's published bathing-water results for monitored beaches in Santa Catarina, Brazil. Get the latest dated bulletin result, preserve results for each sampling point, and review historical measurements. Answers identify the sampling date, bulletin date, source, and data freshness. Results are published measurements, not real-time readings or a safety guarantee. This independent plugin is not developed, operated, or endorsed by IMA/SC.",
+        "category": "Travel",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Is Praia do Perequê in Porto Belo suitable for bathing according to the latest bulletin?",
+          "Qual é o resultado publicado mais recente da Praia de Zimbros, em Bombinhas?",
+          "Mostrame el historial de balneabilidad de Campeche durante 2025."
+        ],
+        "websiteURL": "https://github.com/LucioB16/balneabilidade-sc-plugin",
+        "supportURL": "https://github.com/LucioB16/balneabilidade-sc-plugin/issues",
+        "logo": "assets/icon.png",
+        "composerIcon": "assets/icon.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Latest status with municipality disambiguation and dated source evidence.",
+              "prompt": "¿Está apta para bañarse Praia do Perequê, en Porto Belo?",
+              "tools_triggered": "search_beaches, get_bathing_status",
+              "expected_behavior": "Call search_beaches with query=Praia do Perequê and municipality=Porto Belo, then get_bathing_status with beach=Praia de Perequê and municipality=Porto Belo. Report each returned sampling point and its published verdict, sample date, bulletin date, source, and freshness. Do not call it real-time."
+            },
+            {
+              "description": "Point-level improper results for a named Praia Brava.",
+              "prompt": "¿Qué puntos de Praia Brava, en Florianópolis, están impropios?",
+              "tools_triggered": "get_bathing_status",
+              "expected_behavior": "Call get_bathing_status with beach=Praia Brava and municipality=Florianópolis. List only points whose returned verdict is improper, retain point names and dates, and state if none are improper or if results are partial/unknown."
+            },
+            {
+              "description": "Complete inclusive calendar-year history for Campeche.",
+              "prompt": "Mostrame el historial de balneabilidad de Campeche durante 2025, en Florianópolis.",
+              "tools_triggered": "get_bathing_history",
+              "expected_behavior": "Call get_bathing_history with beach=Campeche, municipality=Florianópolis, from_date=2025-01-01, to_date=2025-12-31. Summarize returned measurements with dates and point identities; distinguish missing years from unavailable data and do not invent entries."
+            },
+            {
+              "description": "Portuguese latest published status for a Bombinhas beach.",
+              "prompt": "Qual é a condição atual da Praia de Zimbros, em Bombinhas?",
+              "tools_triggered": "get_bathing_status",
+              "expected_behavior": "Call get_bathing_status with beach=Praia de Zimbros and municipality=Bombinhas. Answer in Brazilian Portuguese using the returned dated result for each point, identify the bulletin and sample dates, and clarify that it is not real-time even though the user said atual."
+            },
+            {
+              "description": "English status lookup for a beach in Garopaba.",
+              "prompt": "What is the latest published result for Praia de Garopaba, in Garopaba?",
+              "tools_triggered": "search_beaches, get_bathing_status",
+              "expected_behavior": "Call search_beaches with query=Praia de Garopaba and municipality=Garopaba, then get_bathing_status with beach=Praia de Garopaba and municipality=Garopaba. Report every returned sampling point with sample date, bulletin date, source, freshness, and a conservative summary; do not present the last published sample as a real-time reading."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Out-of-scope request for a beach outside Santa Catarina.",
+              "prompt": "Qual é a balneabilidade da Praia Grande em Ubatuba, São Paulo?",
+              "expected_behavior": "Explain in Brazilian Portuguese that this plugin only covers monitored beaches in Santa Catarina and do not call any MCP tool or fabricate a result."
+            },
+            {
+              "description": "Weather and wave forecast are not provided by the IMA/SC bathing-water tools.",
+              "prompt": "¿Qué altura tendrán las olas mañana en Itapoá?",
+              "expected_behavior": "Explain that the plugin reports published bathing-water measurements, not wave or weather forecasts. Do not call an MCP tool."
+            },
+            {
+              "description": "Beach facilities and parking availability are outside the data source and tool schemas.",
+              "prompt": "Is there free parking and a public shower at Praia do Perequê in Porto Belo?",
+              "expected_behavior": "Explain that this plugin does not have verified information about parking or facilities. Do not call an MCP tool or guess."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Initial package with dated IMA/SC bathing status, sampling-point details, and historical measurements.",
+        "translations": {
+          "es-AR": {
+            "subtitle": "Balneabilidad oficial de SC",
+            "description": "Consultá los resultados publicados por IMA/SC para playas monitoreadas de Santa Catarina. Revisá la última medición fechada, el historial y cada punto de muestreo, con fechas, fuente y antigüedad de los datos. No son lecturas en tiempo real ni una garantía de seguridad. Plugin independiente, sin afiliación con IMA/SC."
+          },
+          "pt-BR": {
+            "subtitle": "Balneabilidade oficial de SC",
+            "description": "Consulte os resultados publicados pelo IMA/SC para praias monitoradas de Santa Catarina. Veja a medição datada mais recente, o histórico e cada ponto de coleta, com datas, fonte e atualização dos dados. Não são leituras em tempo real nem uma garantia de segurança. Plugin independente, sem vínculo com o IMA/SC."
+          }
+        }
+      }
+    }
+  }
+}
