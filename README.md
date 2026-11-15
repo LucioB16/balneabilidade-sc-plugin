@@ -35,12 +35,19 @@ results into a claim that an entire beach is suitable.
 
 ## Current release state
 
-The public GitHub repository and package source are being prepared. The Python
-MCP implementation is in the separate repository. No production endpoint has
-been deployed, no private ChatGPT plugin has been created, and this project is
-not yet listed in the public ChatGPT/Codex directory. See
-[`docs/PUBLICATION.md`](docs/PUBLICATION.md) for the verified state and remaining
-requirements.
+A remote Python MCP server is deployed on Enzonic's free Python hosting at
+[`https://balneabilidade-sc.enzonic.dev/mcp`](https://balneabilidade-sc.enzonic.dev/mcp). On 2026-11-15, it passed
+MCP initialization, tool discovery, and live IMA/SC lookups from a custom
+ChatGPT MCP integration. All five tools were invoked from ChatGPT.
+
+**This is an operational validation, not a production-readiness or uptime
+guarantee.** The public directory listing has not been submitted or approved.
+See [`docs/PUBLICATION.md`](docs/PUBLICATION.md) for the remaining requirements.
+
+The live Enzonic deployment currently uses Python 3.12, the repository's
+`main.py` entry point, and the exact upstream package revision in
+`requirements.txt`. For reproducible setup and caveats, see
+[`docs/ENZONIC.md`](docs/ENZONIC.md).
 
 ## Run the remote server locally
 
@@ -75,11 +82,11 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   review cases.
 - `scripts/build_plugin_archive.py`: produces a single-plugin ZIP only after a
   production MCP URL and verified submission facts are supplied.
-- `Dockerfile` and `requirements.txt`: deployable Python/ASGI server wrapper
-  pinned to an immutable MCP source commit.
+- `Dockerfile`, `requirements.txt`, and `main.py`: Docker and Enzonic Python
+  entry points sharing the same immutable MCP source commit.
 - `tests/` and `.github/workflows/ci.yml`: offline manifest and real MCP
   handshake validation against the pinned server.
-- `docs/`: hosting comparison, data-handling facts, and publication status.
+- `docs/`: Enzonic runbook, data-handling facts, and publication status.
 
 The submission archive deliberately does not use an example, preview, or
 development URL. The builder requires real policy URLs, a verified publisher

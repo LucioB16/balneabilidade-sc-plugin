@@ -17,15 +17,16 @@ practices of the selected host.
   the chosen host.
 - The application does not log MCP request bodies. On a tool failure it logs
   only the exception type. The Uvicorn entry point disables its access log.
-- A hosting provider may separately record transport metadata and retain it
-  according to its own configuration. That behavior is unknown until a host
-  is selected.
+- Enzonic hosts the current public MCP endpoint and may separately record
+  network, access, and operational metadata. The provider's actual log retention,
+  visibility, and data-processing terms have not been verified for this deployment.
+  The app-level Uvicorn access log remains disabled.
 - IMA/SC is the official data source; the project is independent and does not
   represent agency endorsement.
 
 ## Facts still needed for a public policy
 
-Before publication, the operator must review and state the selected host's
+Before publication, the operator must review and state Enzonic's
 logging/retention settings, how support requests are handled, and the applicable
 terms and contact details. The repository does not publish or link a privacy
 policy or terms page yet.
