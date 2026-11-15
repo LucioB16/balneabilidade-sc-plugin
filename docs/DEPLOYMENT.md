@@ -10,12 +10,18 @@ commit; it does not copy the IMA provider or its parsing logic.
 | --- | --- | --- |
 | Sites via Plugin Creator | The Site MCP runtime is a JavaScript/Worker environment. The existing provider is Python; porting or proxying it there adds code and operational components. | Not selected for this Python MCP. |
 | Vercel Python Functions | Python/ASGI functions can host an MCP route, but per-instance `/tmp` caches and request pacing are ephemeral. Hobby usage is restricted to personal, non-commercial use; current account plan and intended-use eligibility have not been confirmed. | Possible only after those limits and route behavior are verified. |
-| Persistent container host or user-operated server | Runs the existing Starlette/uvicorn entry point, supports a persistent cache, and can keep one process-level IMA pacing queue. | Best fit for code reuse; host and cost remain unselected pending authorization. |
+| Persistent container host or user-operated server | Runs the existing Starlette/uvicorn entry point, supports a persistent cache, and can keep one process-level IMA pacing queue. | Remains a possible alternative if Enzonic limits are unsuitable. |
+| Enzonic free Python hosting | Executes Python 3.12 with a managed `SERVER_PORT` and `main.py`; the existing Streamable HTTP server works without Docker. | **Deployed and functionally validated on 2026-11-15**, but durability, rate limiting, and production eligibility still need review. |
 
-The container is portable across hosts. We have not registered a new hosting
-service, selected a paid plan, created a public deployment, or claimed an
-endpoint is production-ready. A stable public directory listing needs a
-reachable HTTPS MCP URL.
+The existing Python MCP is reachable at
+[`https://balneabilidade-sc.enzonic.dev/mcp`](https://balneabilidade-sc.enzonic.dev/mcp). This URL passed a real
+ChatGPT MCP connection and tool calls on 2026-11-15. This does **not** establish
+an uptime SLA or confirm readiness for a public directory listing. For setup,
+secrets-free configuration, observed behavior, and recovery checks, see
+[`ENZONIC.md`](ENZONIC.md).
+
+The Docker image remains supported for alternate hosts and local testing.
+No paid hosting plan is required for the observed Enzonic free instance.
 
 ## Local container check
 
@@ -53,8 +59,8 @@ transport logs and retention.
 
 ## Source dependency
 
-`requirements.txt` pins commit
+The repository's `requirements.txt` pins an immutable GitHub archive for commit
 [`fee46b0`](https://github.com/LucioB16/balneabilidade-sc-mcp/commit/fee46b0990fa4a86aa61c89d5564157b1d97782e),
-which adds the remote transport to the upstream `main` branch. Keep this
-immutable pin until a deliberate dependency update is validated, then rerun the
-container and MCP handshake tests.
+which adds the remote transport to the upstream `main` branch. The archive URL avoids a Git executable requirement on Enzonic while keeping
+  the same source revision as Docker. Keep this immutable pin until a deliberate
+  dependency update is validated, then rerun the container and MCP handshake tests.
