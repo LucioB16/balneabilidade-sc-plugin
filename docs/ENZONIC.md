@@ -211,6 +211,23 @@ The workflow runs **only when manually dispatched**: it is not a persistent
 monitor, does not probe continuously and does not attempt to keep free
 hosting awake.
 
+## Enzonic acceptable-use review (2026-11-15)
+
+The official [Python hosting page](https://enzonic.com/python) explicitly
+advertises hosting APIs and long-running Python processes on the free plan,
+subject to capacity. The [November 2026 Terms of Service]
+(https://enzonic.com/legal/terms) prohibit proxy, relay, tunnel, VPN and
+in-container remote-monitoring-agent workloads on free servers. This project
+is a narrowly scoped read-only data API that parses IMA/SC's publications,
+**not** a general-purpose network proxy or tunnel. However, Enzonic has not
+provided a written determination on this particular MCP use case; it remains
+a publication-risk item, not a confirmed AUP approval.
+
+The public Python page advertises 10 GB storage while the provisioned free
+server's actual dashboard showed **1 GiB**. For operational planning, trust
+the quota and measurements in the actual account rather than treating
+marketing resources as guaranteed.
+
 ## Production risks still unresolved
 
 - No contractual SLA, verified availability window or guaranteed free
