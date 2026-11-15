@@ -31,11 +31,13 @@ file manager. Git synchronization on redeploy **has not yet been tested**.
 
 ## Files and immutable dependency
 
-Both files now live at the root of this repository, so they can be copied
-verbatim or used by an Enzonic Git checkout:
+The entry point, guard, and dependency file live at the repository root.
+Deploy `main.py` and `guard.py` together; the guarded entry point imports
+the second file. Git synchronization on the live host remains unverified.
 
-- `main.py`: delegates to the upstream `balneabilidade_sc_mcp.http_server.main`
-  function, preserving the existing `/mcp` Streamable HTTP implementation.
+- `main.py`: starts the existing upstream ASGI `/mcp` application through
+  the `guard.py` admission limiter, keeping the source provider unchanged.
+  **This new wrapper is not yet active in the existing Enzonic container.**
 - `requirements.txt`: installs the `mcp` extra from the ZIP for the immutable
   [upstream commit `fee46b0`](https://github.com/LucioB16/balneabilidade-sc-mcp/commit/fee46b0990fa4a86aa61c89d5564157b1d97782e),
   plus Uvicorn. This is the **same source version** as the prior Git URL and
@@ -89,9 +91,10 @@ A persistent volume and global IMA pacing would require separate verification.
 
 1. Provision the **free** Python runtime and assign a non-temporary HTTPS
    `*.enzonic.dev` domain. Do not upgrade or attach billing to follow this runbook.
-2. Verify the Enzonic file manager shows this repository's `main.py` and
-   nonempty `requirements.txt`. If missing, copy their tracked contents
-   exactly. Do not assume the configured Git address cloned successfully.
+2. Verify the Enzonic file manager shows this repository's `main.py`,
+   `guard.py` and nonempty `requirements.txt`. If missing, copy their
+   tracked contents together. Do not assume the Git address cloned correctly.
+   **Do not update `main.py` without `guard.py`: it will fail to import.**
 3. Review the Startup variables, including exact hostname and `SERVER_PORT`
    (provider assigned), and preserve Enzonic's managed startup wrapper.
 4. Start the server. The first installation can take longer while downloading
@@ -150,6 +153,63 @@ A parser error for `Perequê` was eliminated by sending UTF-8 bytes. For
 correctly displaying accented response text on old Windows PowerShell,
 decode the raw response stream as UTF-8 instead of relying on default
 console decoding.
+
+## Proposed app-level abuse limits (not yet deployed)
+
+The guarded entry point now in this repository applies a **per-process**
+global admission budget to \`GET /mcp\` and \`POST /mcp\`:
+
+| Control | Default |
+| --- | --- |
+| Admissions per 60-second sliding window | 40 |
+| Concurrent POST requests | 2 |
+| Open GET SSE streams | 8 |
+| Maximum POST body (including chunked) | 256 KiB |
+| Maximum time to receive a POST body | 15 seconds |
+
+Over-limit responses are HTTP 429 (rate), 503 (concurrency), 413 (body size)
+or 408 (body deadline). All thresholds were chosen for a 512 MiB instance
+and must be reevaluated using real peak memory measurements.
+
+This is not an edge firewall or per-user quota. Enzonic is behind a proxy,
+so the guard intentionally ignores unverified client IP headers such as
+\`X-Forwarded-For\`. A malicious user could monopolize the shared budget.
+It also does not globally control IMA/SC traffic across multiple replicas,
+protect against all L7 abuse, or guarantee high availability. Maintain a
+single process until a shared limiter/cache is implemented.
+
+**No active Enzonic settings were changed by the code update.**
+To activate it, deploy the *pair* of files \`main.py\` and \`guard.py\`,
+then restart once in the hosting panel. Keep a backup of the prior \`main.py\`
+to roll back immediately if ChatGPT clients fail. The remote MCP endpoint
+and \`BALNEABILIDADE_ALLOWED_HOSTS\` setting do not change.
+
+## Restart / recovery validation procedure (still pending)
+
+The Enzonic dashboard has a manual **Reiniciar** control and console.
+No authenticated panel control was available during this review, so a
+real restart has **not** been performed or falsely declared successful.
+
+1. Note the current uptime and RAM, and confirm the endpoint works.
+2. Trigger **Reiniciar** in Enzonic when an interruption is acceptable.
+3. Review logs for \`StreamableHTTP session manager started\`,
+   \`Application startup complete.\` and the listening \`PORT\`.
+4. From the repository root on Windows, macOS, Linux, or the manual
+   GitHub Actions workflow "Manual remote MCP smoke check", run:
+
+   \`\`\`sh
+   python scripts/check_remote_mcp.py --timeout 120 --check-source
+   \`\`\`
+
+5. Confirm \`initialize\`, \`tools/list\` and the IMA/SC sample call all pass,
+   then execute a tool from the private ChatGPT MCP integration.
+6. Record recovery time, peak RAM, whether \`/tmp\` cache survives, and
+   whether the host downloads dependencies or source anew. Restart once more
+   if you need to confirm reproducibility.
+
+The workflow runs **only when manually dispatched**: it is not a persistent
+monitor, does not probe continuously and does not attempt to keep free
+hosting awake.
 
 ## Production risks still unresolved
 
