@@ -9,6 +9,11 @@ Last checked: 2026-11-15.
   implementation in [upstream PR #1](https://github.com/LucioB16/balneabilidade-sc-mcp/pull/1).
 - Package listing copy, icon, Spanish/Portuguese translations, five positive
   and three negative MCP test cases, Dockerfile, tests, and CI are in this repo.
+- Plugin checks pass in CI: 5 tests pass, including a real Streamable HTTP
+  initialization and tool-discovery handshake against the pinned MCP package;
+  the multi-stage Docker image also builds. See [the green run](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/43663034446).
+- The upstream MCP suite passes 75 offline tests, Ruff, formatting, mypy, and
+  package build; its branch check is [green](https://github.com/LucioB16/balneabilidade-sc-mcp/actions/runs/43662616316).
 - The package generator validates the expected review metadata and refuses
   placeholder, local, or non-HTTPS URLs.
 
