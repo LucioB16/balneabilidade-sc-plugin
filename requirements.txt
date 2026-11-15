@@ -1,2 +1,2 @@
-balneabilidade-sc-mcp[mcp] @ git+https://github.com/LucioB16/balneabilidade-sc-mcp.git@904bde4ac629a4d3a4fd30017234549d2670139a
+balneabilidade-sc-mcp[mcp] @ git+https://github.com/LucioB16/balneabilidade-sc-mcp.git@fee46b0990fa4a86aa61c89d5564157b1d97782e
 uvicorn>=0.34,<1

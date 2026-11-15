@@ -54,7 +54,7 @@ transport logs and retention.
 ## Source dependency
 
 `requirements.txt` pins commit
-[`904bde4`](https://github.com/LucioB16/balneabilidade-sc-mcp/commit/904bde4ac629a4d3a4fd30017234549d2670139a),
-which adds the remote transport in the upstream repository. The source PR is
-open; CI builds against the pinned commit. Update this pin only after the
-upstream change is validated, then rerun the container and MCP handshake tests.
+[`fee46b0`](https://github.com/LucioB16/balneabilidade-sc-mcp/commit/fee46b0990fa4a86aa61c89d5564157b1d97782e),
+which adds the remote transport to the upstream `main` branch. Keep this
+immutable pin until a deliberate dependency update is validated, then rerun the
+container and MCP handshake tests.

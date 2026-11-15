@@ -5,8 +5,8 @@ Last checked: 2026-11-15.
 ## Completed
 
 - Public, separate repository: <https://github.com/LucioB16/balneabilidade-sc-plugin>.
-- The existing Python MCP code has a proposed remote Streamable HTTP
-  implementation in [upstream PR #1](https://github.com/LucioB16/balneabilidade-sc-mcp/pull/1).
+- The remote Streamable HTTP implementation is merged in the upstream MCP
+  repository at [commit `fee46b0`](https://github.com/LucioB16/balneabilidade-sc-mcp/commit/fee46b0990fa4a86aa61c89d5564157b1d97782e).
 - Package listing copy, icon, Spanish/Portuguese translations, five positive
   and three negative MCP test cases, Dockerfile, tests, and CI are in this repo.
 - Plugin checks pass in CI: 5 tests pass, including a real Streamable HTTP
@@ -19,8 +19,7 @@ Last checked: 2026-11-15.
 
 ## Not completed or not verified
 
-- The upstream PR is not merged; the plugin is pinned to its current immutable
-  commit until that change is finalized.
+- The plugin pins the immutable upstream commit `fee46b0`.
 - No production container has been deployed. There is no stable public MCP URL
   yet and therefore no distributable `mcp.json`.
 - No private ChatGPT plugin has been created or connected. We cannot test the
