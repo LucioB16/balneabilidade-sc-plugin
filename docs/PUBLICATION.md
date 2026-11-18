@@ -55,44 +55,86 @@ Last checked: 2026-11-18.
 - Enzonic's `/tmp/balneabilidade` cache is ephemeral; persistence across restarts
   is not verified. The currently observed deployment was configured through the
   hosting panel; a fresh Git-based redeploy from this repository is not yet tested.
-- All five tools were invoked in the connected ChatGPT integration. The five
-  positive review scenarios were also manually exercised at MCP tool level,
-  including complete 2025 pagination for Campeche (145 records). A manual
-  GitHub Actions review run [#44228356588](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44228356588)
-  passed all five tool-layer cases and uploaded review-tool-evidence.zip.
-  See [review evidence](REVIEW_VALIDATION.md). Model-level tool selection and
-  three negative no-tool scenarios still require a real ChatGPT recorded review;
-  no reviewer video exists yet. See [recording guide](REVIEW_DEMO.md).
+- Direct MCP tests passed all five positive scenarios; the
+  [manual review workflow #44228356588](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44228356588)
+  generated JSON evidence, including complete server-side pagination for
+  Campeche 2025 (145 records). The operator separately **reported** a
+  DeepSeek Harness/browser-use run of all eight exact prompts inside
+  ChatGPT Web on 2026-11-18. Answer content passed P1, P2 and P4;
+  P3 content passed but browser-side pagination remained **INCONCLUSIVE**;
+  P5 **failed English language on the first attempt** and passed on retry.
+  N1–N3 are all **INCONCLUSIVE for plugin non-invocation** due to no
+  observable tool traces. See [detailed review evidence](REVIEW_VALIDATION.md).
+- The operator reports a locally edited 104.63-second H.264 video
+  (`outputs/edited/balneabilidade-sc-walkthrough.mp4`, SHA-256
+  `8D6B60D954C495189614A2981B55FE662AA7796140FB915223D2AF3E56D3450A`).
+  It is a composition of real frames/events, **not a continuous capture**.
+  Its bytes, hash and redactions were not independently inspected here;
+  no public video URL exists. Do not mark the reviewer recording as uploaded.
+  See [walkthrough guide](REVIEW_DEMO.md).
 - The operator approved and published the public legal pages on 2026-11-18.
-  Confirm that all six direct URLs are accessible before final review.
-  The operator's screenshot records Enzonic's permission and no-retention
-  statement. The technical categories of transient processing or independent
-  network providers were not detailed. The OpenAI individual verification
-  screen shows Approved; reviewer-accessible recording, selected countries
-  and commerce declaration still need completion. The operator supplied the
-  public name Lucio Bottacin and privacy contact luciobotacin@gmail.com.
+  GitHub Pages deployment [#44308178741](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44308178741)
+  passed, and the operator showed the rendered homepage. All six individual
+  HTTPS URLs still require direct verification; a web retrieval attempt on
+  2026-11-18 could not reach them, which is not proof of their unavailability.
+- Enzonic confirmed use of the read-only public MCP on the free host and
+  answered “Data is not retained,” without an itemized processing inventory.
+  The operator provided individual OpenAI verification approval.
+  `developerName` is **Lucio Bottacin**; the privacy contact is
+  `luciobotacin@gmail.com`; `review.commerce=false` accurately describes
+  the read-only, no-payment plugin. Confirm dashboard values before review.
+- The OpenAI Platform plugin is currently **version 0.1.1 in draft**,
+  with the neutral subtitle. The operator-provided OpenAI screenshots show
+  the Enzonic **MCP domain verified**, the server **Configured**, five tools
+  discovered and **no MCP scan findings**. These steps are completed,
+  not pending as in earlier checklists.
+- **Not yet supplied:** accessible reviewer video URL and deliberate
+  publication country selection. The edited video exists locally according
+  to the reporter but was not uploaded. Review details and policy
+  attestations have not been completed, and nothing was submitted.
 - A manual plugin ZIP build workflow is available. The initial ZIP can
   omit the video and country allowlist under the official schema; final
   review still requires an accessible video and deliberate country targeting.
   No submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
-## Next steps
+## Remaining steps before review submission
 
-1. Record Enzonic's written approval and no-retention statement (done in
-   the legal review checklist); review the final legal text, attribution and
-   contact information before publishing. See [legal review](LEGAL_REVIEW.md).
-2. Verify all six legal URLs directly; run the manual plugin package build and
-   upload the archive to OpenAI for validation. It remains an OpenAI
-   **draft status** until submitted, approved, and published.
-3. Continue resource/abuse testing without flooding the shared free host;
-   complete publisher verification and a reviewer-accessible demonstration.
-4. Run the five positive and three negative prompts through ChatGPT, record
-   tool selection and user-visible answers, upload a reviewer-accessible demo
-   video, then build and check the single-plugin ZIP.
-5. In the plugin portal, obtain the MCP-domain challenge token and deploy the
-   prepared Enzonic challenge route; verify the domain and tool scan, then
-   submit for directory review once the demo and selected countries are ready.
+1. **Reviewer video:** upload the existing real-browser composite to a
+   reviewer-accessible, read-only URL; check playback in an unauthenticated
+   incognito session. Disclose that the video is edited/composited rather
+   than a continuous recording; assess whether an additional continuous
+   capture is needed. Keep the reported video SHA-256 for comparison; verify
+   the actual local bytes and redactions before uploading. Do not invent
+   `demo_recording_url`.
+2. **Country availability:** operator decision is pending. **Recommendation:
+   `countries: []` for worldwide availability**, because beaches in Santa
+   Catarina are relevant to international travelers and the tool supports
+   Spanish, Portuguese and English. According to OpenAI, an empty list
+   explicitly removes country restrictions; `null`/omission leaves
+   targeting unchanged. **Do not assign worldwide availability without
+   the operator's choice.** An explicit uppercase ISO-style allowlist is
+   valid if regional targeting is preferred.
+3. **Metadata:** confirm `developerName: "Lucio Bottacin"`, the live
+   privacy and terms HTTPS URLs, and `commerce: false`. Populate the
+   ignored `submission/metadata.json` with the *actual* video URL and
+   chosen `countries` once known. Keep missing values null until then.
+4. **Strict ZIP:** build with
+   `python scripts/build_plugin_archive.py --mcp-url "https://balneabilidade-sc.enzonic.dev/mcp" --metadata submission/metadata.json --require-demo`.
+   Review generated archive contents. If updating fields already imported
+   to OpenAI, upload the new version to the **existing** plugin.
+5. **Portal review:** domain verification and all five tool scans are
+   **already completed**. Add the video URL in **Review information**,
+   verify the five positive / three negative case descriptions, enter
+   reviewer credentials **only if needed** (none for this no-auth MCP),
+   complete truthful attestations and select **Submit for review**
+   **only with explicit operator authorization**.
+6. **Publication:** wait for OpenAI's review decision, then request explicit
+   authorization before publishing. A configured/draft plugin is not a
+   public directory listing.
+
+**No upload, submission, release or publication action is authorized by
+this documentation-only update.**
 
 See [`ENZONIC.md`](ENZONIC.md) for the deployment runbook and
 [`submission/README.md`](../submission/README.md) for submission-only facts.

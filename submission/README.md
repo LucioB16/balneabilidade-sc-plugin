@@ -43,8 +43,21 @@ python scripts/build_plugin_archive.py \
 Or use the manual GitHub Actions workflow **Build plugin package for public review**
 to download the generated ZIP without installing Python locally.
 
-After recording the demo, add its real URL and choose the countries in your
-ignored local metadata file. For final review, run the strict version:
+The operator reported a **locally prepared** 104.63-second edited real-browser
+video on 2026-11-18, but it has not been uploaded, and its reported SHA-256
+has not been independently verified. The UI did not expose MCP tool
+traces. The three negative review cases therefore remain **INCONCLUSIVE
+for non-invocation**, and P3 pagination remains unobservable. See
+[REVIEW_VALIDATION.md](../docs/REVIEW_VALIDATION.md).
+
+**Country choice is still pending.** For a public multilingual beach-data
+plugin, global availability (`countries: []`) is a reasonable recommendation;
+it is **not enabled or inferred without operator approval**. With `null`
+the field is omitted from the ZIP and existing targeting is preserved.
+
+After the demo is uploaded to a reviewer-accessible URL and country
+availability is chosen, update the ignored local metadata file. For
+final review, run the strict version:
 
 ```bash
 python scripts/build_plugin_archive.py \
