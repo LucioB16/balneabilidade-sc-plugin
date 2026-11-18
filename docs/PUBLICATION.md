@@ -92,13 +92,14 @@ Last checked: 2026-11-18.
   the Enzonic **MCP domain verified**, the server **Configured**, five tools
   discovered and **no MCP scan findings**. These steps are completed,
   not pending as in earlier checklists.
-- **Not yet supplied:** accessible reviewer video URL and deliberate
-  publication country selection. The edited video exists locally according
-  to the reporter but was not uploaded. Review details and policy
-  attestations have not been completed, and nothing was submitted.
+- **Still missing:** reviewer-accessible video URL, final reviewer evidence
+  and policy attestations. The operator **confirmed worldwide availability**
+  on 2026-11-18 (`countries: []` in the submission metadata template), but
+  the plugin is still in draft and has not been submitted or published.
 - A manual plugin ZIP build workflow is available. The initial ZIP can
-  omit the video and country allowlist under the official schema; final
-  review still requires an accessible video and deliberate country targeting.
+  omit the video while the reviewer recording is unavailable; the operator
+  approved worldwide targeting (`countries: []`). Final review still
+  requires an accessible video URL.
   No submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
@@ -114,18 +115,15 @@ Last checked: 2026-11-18.
    version will have a different hash. See
    [independent video audit](VIDEO_AUDIT_20261118.md).
    Do not invent `demo_recording_url`.
-2. **Country availability:** operator decision is pending. **Recommendation:
-   `countries: []` for worldwide availability**, because beaches in Santa
-   Catarina are relevant to international travelers and the tool supports
-   Spanish, Portuguese and English. According to OpenAI, an empty list
-   explicitly removes country restrictions; `null`/omission leaves
-   targeting unchanged. **Do not assign worldwide availability without
-   the operator's choice.** An explicit uppercase ISO-style allowlist is
-   valid if regional targeting is preferred.
+2. **Country availability: confirmed.** On 2026-11-18, the operator
+   explicitly selected worldwide availability. The tracked template
+   contains `countries: []` (no country allowlist restriction). This setting
+   is not a request to publish or submit the plugin.
 3. **Metadata:** confirm `developerName: "Lucio Bottacin"`, the live
    privacy and terms HTTPS URLs, and `commerce: false`. Populate the
-   ignored `submission/metadata.json` with the *actual* video URL and
-   chosen `countries` once known. Keep missing values null until then.
+   ignored `submission/metadata.json` with the *actual* video URL once
+   known, preserving the already approved `countries: []`. Keep the missing
+   video URL null until then.
 4. **Strict ZIP:** build with
    `python scripts/build_plugin_archive.py --mcp-url "https://balneabilidade-sc.enzonic.dev/mcp" --metadata submission/metadata.json --require-demo`.
    Review generated archive contents. If updating fields already imported
