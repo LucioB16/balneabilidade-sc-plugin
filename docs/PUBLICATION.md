@@ -42,9 +42,13 @@ Last checked: 2026-11-15.
 - Enzonic's `/tmp/balneabilidade` cache is ephemeral; persistence across restarts
   is not verified. The currently observed deployment was configured through the
   hosting panel; a fresh Git-based redeploy from this repository is not yet tested.
-- All five tools were invoked in the ChatGPT integration, but the full set of
-  five positive and three negative review cases has not been evaluated end to end
-  as a recorded review suite.
+- All five tools were invoked in the connected ChatGPT integration. The five
+  positive review scenarios were also **manually exercised at MCP tool level**
+  on 2026-11-17, including complete 2025 pagination for Campeche (145
+  records). See [review evidence](REVIEW_VALIDATION.md). The model-level
+  prompt selection and three negative no-tool cases **still require a real
+  ChatGPT recorded review**; no recording URL exists yet.
+  See [recording guide](REVIEW_DEMO.md).
 - No public privacy policy page, terms-of-service page, reviewer-accessible demo
   recording, verified publisher identity, selected country availability, or
   truthful commerce declaration has been supplied.
@@ -60,7 +64,9 @@ Last checked: 2026-11-15.
    Review the Enzonic acceptable-use terms for this particular public API.
 3. Prepare accurate public privacy and terms pages, publisher verification,
    a reviewer-accessible recording, and the publication declarations.
-4. Run all review cases in ChatGPT, then build and check the single-plugin ZIP.
+4. Run the five positive and three negative prompts through ChatGPT, record
+   tool selection and user-facing results, and upload an accessible demo video.
+   Then build and check the single-plugin ZIP.
 5. Complete the publisher and domain verification, and submit for directory review.
 
 See [`ENZONIC.md`](ENZONIC.md) for the deployment runbook and
