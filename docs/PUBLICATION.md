@@ -65,17 +65,20 @@ Last checked: 2026-11-18.
   P5 **failed English language on the first attempt** and passed on retry.
   N1–N3 are all **INCONCLUSIVE for plugin non-invocation** due to no
   observable tool traces. See [detailed review evidence](REVIEW_VALIDATION.md).
-- The operator reports a locally edited 104.63-second H.264 video
-  (`outputs/edited/balneabilidade-sc-walkthrough.mp4`, SHA-256
-  `8D6B60D954C495189614A2981B55FE662AA7796140FB915223D2AF3E56D3450A`).
-  It is a composition of real frames/events, **not a continuous capture**.
-  The uploaded MP4 was independently inspected on 2026-11-18; its SHA-256
-  exactly matched the reported value, and the complete video decoded
-  successfully. It has editorial flaws and cannot prove non-invocation or
-  complete pagination; see [video audit](VIDEO_AUDIT_20261118.md).
-  The original frame/event manifest was not inspected and redactions were
-  sampled rather than checked frame by frame. No public video URL exists.
-  Do not mark the reviewer recording as uploaded.
+- The **v1** 104.63-second MP4 was independently reviewed and its
+  SHA-256 verified; see [v1 audit](VIDEO_AUDIT_20261118.md).
+  The operator then uploaded **v2**, and its **215-second** MP4
+  (1920×1080 H.264, no audio; **3,413,718 bytes**) was independently
+  decoded and checked. SHA-256
+  `bb54b7b14e7663d45d4d9355d878706dc3120bc8951936f8b116c142349989dd`
+  **exactly matches** the reported hash. V2 removes obstructing captions,
+  shows P5's first language failure and successful retry, and explicitly
+  retains P3 and N1–N3 observability limits. See
+  [v2 video audit](VIDEO_AUDIT_V2_20261118.md). Both videos are edited
+  composites of real frames/events rather than continuous screen captures.
+  Source files were not independently inspected, and masking was visually
+  sampled, not frame-by-frame certified. **No public reviewer video URL
+  exists**; do not mark the evidence as uploaded.
 - The operator approved and published the public legal pages on 2026-11-18.
   GitHub Pages deployment [#44308178741](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44308178741)
   passed, and the operator showed the rendered homepage. All six individual
@@ -105,15 +108,13 @@ Last checked: 2026-11-18.
 
 ## Remaining steps before review submission
 
-1. **Reviewer video:** upload the existing real-browser composite to a
-   reviewer-accessible, read-only URL; check playback in an unauthenticated
-   incognito session. Disclose that the video is edited/composited rather
-   than a continuous recording; assess whether an additional continuous
-   capture is needed. Keep the reported video SHA-256 for comparison; verify
-   the corrected export's actual hash and redactions before uploading.
-   The current file's SHA-256 has been independently verified, but a revised
-   version will have a different hash. See
-   [independent video audit](VIDEO_AUDIT_20261118.md).
+1. **Reviewer video:** the **v2 MP4 is technically verified**, with the
+   reported SHA-256 matching the uploaded bytes. Finish privacy inspection
+   of the export and upload this actual v2 video to a reviewer-accessible,
+   read-only URL; check playback in an unauthenticated incognito session.
+   Disclose that the video is edited/composited rather than a continuous
+   recording and retain P3/N1–N3 limitations; see
+   [v2 independent audit](VIDEO_AUDIT_V2_20261118.md).
    Do not invent `demo_recording_url`.
 2. **Country availability: confirmed.** On 2026-11-18, the operator
    explicitly selected worldwide availability. The tracked template
