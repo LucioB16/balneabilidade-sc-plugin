@@ -54,9 +54,12 @@ Last checked: 2026-11-17.
   five positive and three negative review cases has not been evaluated end to end
   as a recorded review suite.
 - The public policy and terms pages are **drafts only**, not yet deployed.
-  Enzonic's technical log categories and retention period, a confidential
-  privacy contact, publisher identity, reviewer-accessible recording, selected
-  country availability and commerce declaration still need verification.
+  Enzonic's technical log categories and retention period, OpenAI publisher
+  identity verification, reviewer-accessible recording, selected country
+  availability and commerce declaration still need verification. The operator
+  supplied the public name Lucio Bottacin and privacy contact
+  luciobotacin@gmail.com for the drafts; mailbox ownership/monitoring has not
+  been independently verified.
 - No public submission ZIP has been generated with those verified facts, and no
   submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
@@ -64,8 +67,8 @@ Last checked: 2026-11-17.
 ## Next steps
 
 1. Confirm Enzonic's technical log retention and acceptable-use policy for
-   this deployment; supply publisher legal identity and a private contact
-   channel. Complete the [legal review checklist](LEGAL_REVIEW.md).
+   this deployment; verify the provided operator identity and contact address
+   for public use. Complete the [legal review checklist](LEGAL_REVIEW.md).
 2. Approve the translations, remove draft banners and disable noindex; deploy
    GitHub Pages manually and verify all six live URLs.
 3. Continue resource/abuse testing without flooding the shared free host;

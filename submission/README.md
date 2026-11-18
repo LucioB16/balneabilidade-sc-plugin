@@ -15,7 +15,8 @@ Copy `metadata.template.json` to the ignored `submission/metadata.json` and set:
 
 Draft policy pages and a manual GitHub Pages workflow are staged under
 `site/`. Before submission, review [the legal release checklist](../docs/LEGAL_REVIEW.md),
-confirm the responsible identity/private contact and Enzonic log retention,
+verify the supplied operator name (Lucio Bottacin), privacy contact
+(luciobotacin@gmail.com), OpenAI account identity and Enzonic log retention,
 remove all draft notices, enable Pages, run the manual publish workflow and
 verify both HTTPS URLs. Proposed URLs are **not yet valid submission facts**.
 

@@ -43,13 +43,15 @@ HTTPS privacy and terms URLs for an MCP listing.
 
 ## Blocking questions before publishing or submitting
 
-1. **Legal publisher identity:** confirm the individual/business name that
-   will be verified in the OpenAI developer dashboard. The draft uses only
-   the public GitHub handle LucioB16; this is not legal identity verification.
-2. **Confidential privacy contact:** establish an operator-controlled private
-   email or other confidential mechanism. GitHub Issues are public and **must
-   not** be used to submit sensitive personal information or data-subject
-   requests. The draft explicitly states this limitation.
+1. **Service operator (provided):** Lucio Bottacin. The operator gave this
+   name for the legal pages. **Not yet verified** against the name registered
+   in the OpenAI developer dashboard; check the exact verified legal identity
+   before submission.
+2. **Direct privacy contact (provided):** luciobotacin@gmail.com.
+   The operator provided this address for public display. Verify the mailbox
+   is monitored and can receive privacy-related inquiries before publication.
+   GitHub Issues remain public and **must not** be used to submit sensitive
+   personal information or data-subject requests.
 3. **Enzonic technical metadata retention:** obtain its applicable log
    categories, default durations, deletion policy and relevant subprocessors
    for this exact **Python Web o app** product; do not substitute the
@@ -83,3 +85,12 @@ HTTPS privacy and terms URLs for an MCP listing.
 
 Until steps 1–6 are complete, **do not add the proposed URLs to the
 submission manifest as though they are live** and do not submit the plugin.
+
+## Operator contact supplied (2026-11-17)
+
+The draft pages now identify **Lucio Bottacin** as the service operator and
+provide the direct email **luciobotacin@gmail.com** for privacy-related
+inquiries. These details were provided by the operator for public display.
+This does **not** establish independent verification of legal identity or
+of control over the email inbox. The Enzonic logging and allowed-use checks,
+legal review, and manual GitHub Pages publication steps remain outstanding.
