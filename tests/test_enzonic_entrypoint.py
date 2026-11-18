@@ -5,17 +5,22 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from guard import PublicMcpGuard
+
 ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM_COMMIT = "fee46b0990fa4a86aa61c89d5564157b1d97782e"
 
 
 class EnzonicEntrypointTests(unittest.TestCase):
-    def test_main_py_delegates_to_upstream_http_server(self) -> None:
-        # Do not start a listener; validate that the panel's main.py entry
-        # actually calls the same installed HTTP command used by Docker.
-        with patch("balneabilidade_sc_mcp.http_server.main") as start:
+    def test_main_py_starts_guarded_mcp_on_provider_port(self) -> None:
+        with patch.dict("os.environ", {"PORT": "28982"}), patch("uvicorn.run") as start:
             runpy.run_path(str(ROOT / "main.py"), run_name="__main__")
-        start.assert_called_once_with()
+        start.assert_called_once()
+        args, kwargs = start.call_args
+        self.assertIsInstance(args[0], PublicMcpGuard)
+        self.assertEqual(kwargs["host"], "0.0.0.0")
+        self.assertEqual(kwargs["port"], 28982)
+        self.assertFalse(kwargs["access_log"])
 
     def test_requirements_use_the_verified_immutable_archive(self) -> None:
         requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")

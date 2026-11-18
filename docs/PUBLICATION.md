@@ -22,9 +22,8 @@ Last checked: 2026-11-15.
   The last returned a rendered PNG page from the official bulletin.
 - Package listing copy, icon, Spanish/Portuguese translations, five draft
   positive cases, three draft negative cases, Dockerfile, tests and CI exist.
-- Earlier CI passed five tests, including an offline Streamable HTTP initialization
-  and tool-discovery handshake. These are pre-change results; this change needs
-  a fresh CI run before merge.
+- The Enzonic documentation/entrypoint PR (#1) passed CI and was merged;
+  this new hardening PR requires its own clean test run before activation.
 - The archive builder rejects placeholder and non-HTTPS submission values and
   requires missing publication metadata to be completed deliberately.
 
@@ -33,9 +32,10 @@ Last checked: 2026-11-15.
 - Availability and stability over time, behavior under concurrent calls, memory
   peaks, restarts and potential free-host sleep or suspension have **not** been
   load-tested. An observed always-on label is not a contractual uptime guarantee.
-- Rate limiting at public ingress and protection against abusive requests are not
-  yet verified. The IMA request pace is per process; keep one replica unless
-  global upstream throttling and shared caching are added.
+- A proposed per-process request-size, concurrency and rate guard is now in
+  this repository but **not yet deployed** to the active Enzonic server.
+  Edge-layer rate limiting and abusive-client isolation are not verified.
+  IMA request pacing is per process; keep one replica until shared limits exist.
 - Enzonic's terms for this specific publicly accessible API use, capacity
   guarantees, billing/overage behavior, exact log retention, and country-specific
   eligibility have not all been independently verified.
@@ -54,9 +54,10 @@ Last checked: 2026-11-15.
 
 ## Next steps
 
-1. Review/merge the Enzonic reproducibility changes and verify the CI job.
-2. Validate recovery after a restart, actual free-plan resource and egress
-   limits, and ingress rate limiting; review Enzonic's applicable terms.
+1. Validate the admission-guard changes in CI and review before live deployment.
+2. Perform a manual Enzonic restart/recovery test and evaluate actual peak
+   resource use, cache behavior, upstream egress and abuse protection.
+   Review the Enzonic acceptable-use terms for this particular public API.
 3. Prepare accurate public privacy and terms pages, publisher verification,
    a reviewer-accessible recording, and the publication declarations.
 4. Run all review cases in ChatGPT, then build and check the single-plugin ZIP.

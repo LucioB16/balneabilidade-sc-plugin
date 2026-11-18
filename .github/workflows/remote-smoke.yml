@@ -1,0 +1,18 @@
+name: Manual remote MCP smoke check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify remote HTTPS, MCP handshake, tools and source
+        run: python scripts/check_remote_mcp.py --timeout 120 --check-source
