@@ -5,5 +5,5 @@
   "demo_recording_url": null,
   "commerce": false,
   "commerce_description": "Read-only access to official published IMA/SC bathing-water data. The plugin does not sell products, book services, or process payments.",
-  "countries": null
+  "countries": []
 }

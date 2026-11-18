@@ -64,7 +64,8 @@ class PackageMetadataTests(unittest.TestCase):
         self.assertTrue(ext["interface"]["termsOfServiceURL"].startswith("https://"))
         self.assertIs(ext["review"]["commerce"], False)
         self.assertNotIn("demo_recording_url", ext["review"])
-        self.assertNotIn("countries", ext["publication"])
+        self.assertEqual(metadata["countries"], [])
+        self.assertEqual(ext["publication"]["countries"], [])
 
     def test_package_builds_and_final_mode_rejects_missing_video(self) -> None:
         metadata = ROOT / "submission/metadata.template.json"
@@ -77,6 +78,7 @@ class PackageMetadataTests(unittest.TestCase):
                 self.assertIn("balneabilidade-sc/mcp.json", names)
                 manifest = json.loads(archive.read("balneabilidade-sc/plugin.json"))
                 self.assertNotIn("demo_recording_url", manifest["extensions"]["com.openai"]["review"])
+                self.assertEqual(manifest["extensions"]["com.openai"]["publication"]["countries"], [])
             with self.assertRaisesRegex(PackageError, "Final review requires"):
                 build_archive("https://balneabilidade-sc.enzonic.dev/mcp", metadata, zip_path, require_demo=True)
 
