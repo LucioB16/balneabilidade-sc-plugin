@@ -1,0 +1,25 @@
+name: Manual five positive MCP review checks
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify five positive scenarios through real remote MCP calls
+        run: python -m scripts.review_cases --timeout 120 --output review-evidence.json
+      - name: Attach tool-level evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-tool-evidence
+          path: review-evidence.json
+          if-no-files-found: ignore
