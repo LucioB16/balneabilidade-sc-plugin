@@ -53,9 +53,14 @@ Last checked: 2026-11-18.
 - Enzonic's `/tmp/balneabilidade` cache is ephemeral; persistence across restarts
   is not verified. The currently observed deployment was configured through the
   hosting panel; a fresh Git-based redeploy from this repository is not yet tested.
-- All five tools were invoked in the ChatGPT integration, but the full set of
-  five positive and three negative review cases has not been evaluated end to end
-  as a recorded review suite.
+- All five tools were invoked in the connected ChatGPT integration. The five
+  positive review scenarios were also manually exercised at MCP tool level,
+  including complete 2025 pagination for Campeche (145 records). A manual
+  GitHub Actions review run [#44228356588](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44228356588)
+  passed all five tool-layer cases and uploaded review-tool-evidence.zip.
+  See [review evidence](REVIEW_VALIDATION.md). Model-level tool selection and
+  three negative no-tool scenarios still require a real ChatGPT recorded review;
+  no reviewer video exists yet. See [recording guide](REVIEW_DEMO.md).
 - The public policy and terms pages are **drafts only**, not yet deployed.
   The operator's screenshot records Enzonic's permission and no-retention
   statement. The technical categories of transient processing or independent
@@ -76,7 +81,9 @@ Last checked: 2026-11-18.
    GitHub Pages manually and verify all six live URLs.
 3. Continue resource/abuse testing without flooding the shared free host;
    complete publisher verification and a reviewer-accessible demonstration.
-4. Run all review cases in ChatGPT, then build and check the single-plugin ZIP.
+4. Run the five positive and three negative prompts through ChatGPT, record
+   tool selection and user-visible answers, upload a reviewer-accessible demo
+   video, then build and check the single-plugin ZIP.
 5. Complete the publisher and domain verification, and submit for directory review.
 
 See [`ENZONIC.md`](ENZONIC.md) for the deployment runbook and
