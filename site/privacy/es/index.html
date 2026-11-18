@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Política de privacidad — Balneabilidade SC, independent IMA/SC bathing-water information tool.">
+<title>Política de privacidad · Balneabilidade SC</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="canonical" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/">
+<link rel="alternate" hreflang="en" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/en/">
+<link rel="alternate" hreflang="es-AR" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/es/">
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="/balneabilidade-sc-plugin/">Balneabilidade SC</a><nav aria-label="Primary"><a href="/balneabilidade-sc-plugin/">Inicio</a><a href="/balneabilidade-sc-plugin/privacy/es/">Política de privacidad</a><a href="/balneabilidade-sc-plugin/terms/es/">Términos de uso</a></nav></div></header>
+<main class="wrap">
+<div class="eyebrow">Balneabilidade SC / Privacy</div>
+<h1>Política de privacidad</h1>
+<div class="langs" aria-label="Languages"><a href="/balneabilidade-sc-plugin/privacy/" >Português</a><a href="/balneabilidade-sc-plugin/privacy/en/" >English</a><a href="/balneabilidade-sc-plugin/privacy/es/" aria-current="page">Español</a></div>
+<p class="meta">Última actualización: 18/11/2026</p>
+<p>Esta política describe el tratamiento de datos de <strong>Balneabilidade SC</strong>, un servicio MCP independiente, de código abierto y de solo lectura, mantenido en el <a href="https://github.com/LucioB16/balneabilidade-sc-plugin">repositorio de GitHub LucioB16</a>. No pertenece al IMA/SC ni cuenta con su respaldo.</p>
+<p><strong>Responsable del servicio:</strong> Lucio Bottacin.</p>
+<h2>1. Datos recibidos</h2>
+<p>Cuando se invoca una herramienta, el servidor recibe únicamente los parámetros enviados por el cliente: nombre de la playa, municipio, identificador del punto de muestreo, fechas, cantidad de resultados o página del boletín. No solicitamos credenciales, datos de pago, documentos de identidad ni conversaciones completas.</p>
+<p>Los proveedores de hosting y red pueden procesar datos técnicos de conexión (por ejemplo, dirección IP, fecha y hora, encabezados HTTP y errores) para brindar y proteger el servicio. El soporte de Enzonic informó que no retiene datos, sin detallar qué campos podrían procesarse transitoriamente.</p>
+<h2>2. Finalidades</h2>
+<p>Los parámetros permiten buscar y devolver boletines fechados del IMA/SC, puntos de muestreo, históricos e imágenes. Los proveedores de infraestructura pueden tratar metadatos técnicos para ruteo, disponibilidad, prevención de abuso y seguridad.</p>
+<h2>3. Almacenamiento y conservación</h2>
+<p>El servidor MCP no tiene cuentas de usuarios ni base de datos de conversaciones. La aplicación no guarda deliberadamente argumentos de herramientas ni chats completos. El registro de accesos de Uvicorn está desactivado y el registro de errores guarda el tipo de excepción, no el cuerpo de la solicitud.</p>
+<p>Para reducir solicitudes al origen, se mantiene una caché de <em>documentos públicos del IMA/SC</em>, no perfiles: índice y análisis (1 hora), catálogo de puntos (24 horas), historial del año actual (6 horas), historial de años anteriores (30 días) y PDF de boletines (validez de hasta 3650 días). Esos plazos son de validez de caché; los archivos vencidos pueden permanecer hasta su limpieza o el reinicio del almacenamiento temporal.</p>
+<p><strong>Confirmación del proveedor:</strong> ante una consulta por correo sobre el uso de este servidor MCP público y la retención de registros, el soporte de Enzonic confirmó que este uso está permitido en el plan gratuito y respondió: «Data is not retained» (no se retienen datos). No especificó las categorías de datos ni los posibles registros de otros proveedores de red. Esto no excluye el procesamiento transitorio necesario para operar la red ni describe la caché de documentos públicos que mantiene la propia aplicación.</p>
+<h2>4. Destinatarios</h2>
+<p><a href="https://enzonic.com/legal/privacy">Enzonic</a> aloja el servicio y puede utilizar subprocesadores. El MCP consulta datos públicos del <a href="https://balneabilidade.ima.sc.gov.br/">IMA/SC</a>. Este sitio legal está preparado para <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Pages</a>, que puede tratar metadatos de visita. ChatGPT/Codex trata las conversaciones y las llamadas a herramientas bajo sus propias condiciones. No incorporamos scripts publicitarios ni analítica de terceros en el sitio o la aplicación.</p>
+<h2>5. Controles y solicitudes</h2>
+<p>Podés dejar de usar las herramientas o desconectar el plugin desde tu cliente. Evitá introducir datos privados o sensibles en las búsquedas. La conservación del historial de chat depende de la plataforma.</p>
+<p>Para consultas generales, utilizá <a href="https://github.com/LucioB16/balneabilidade-sc-plugin/issues">GitHub Issues</a>. <strong>Las incidencias son públicas: no publiques información personal ni solicitudes sensibles.</strong> Para solicitudes de privacidad, escribile directamente a Lucio Bottacin: <a href="mailto:luciobotacin@gmail.com">luciobotacin@gmail.com</a>. Pueden corresponder derechos de acceso, rectificación, eliminación u oposición según la ley aplicable y los datos realmente conservados.</p>
+<h2>6. Cambios y alcance</h2>
+<p>Este aviso se limita al proyecto independiente Balneabilidade SC y no cubre los servicios del IMA/SC, Enzonic, GitHub u OpenAI. Los cambios se identificarán con una fecha nueva. Los resultados publicados no son mediciones ambientales en tiempo real.</p>
+</main>
+<footer class="foot"><div class="wrap"><a href="/balneabilidade-sc-plugin/privacy/es/">Política de privacidad</a><a href="/balneabilidade-sc-plugin/terms/es/">Términos de uso</a><a href="https://github.com/LucioB16/balneabilidade-sc-plugin">Código fuente</a><p>Balneabilidade SC — independent project. Not affiliated with or endorsed by IMA/SC.</p></div></footer>
+</body></html>

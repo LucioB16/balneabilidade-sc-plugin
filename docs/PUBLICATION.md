@@ -1,6 +1,6 @@
 # Publication readiness
 
-Last checked: 2026-11-15.
+Last checked: 2026-11-18.
 
 ## Completed and externally observed
 
@@ -22,8 +22,16 @@ Last checked: 2026-11-15.
   The last returned a rendered PNG page from the official bulletin.
 - Package listing copy, icon, Spanish/Portuguese translations, five draft
   positive cases, three draft negative cases, Dockerfile, tests and CI exist.
-- The Enzonic documentation/entrypoint PR (#1) passed CI and was merged;
-  this new hardening PR requires its own clean test run before activation.
+- PRs #1–#3 were merged and passed CI; `main.py` and `guard.py` were
+  independently confirmed by the operator in Enzonic. External GitHub Actions
+  smoke run [#44224201321](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44224201321)
+  passed initialize, tool list and a real IMA/SC status call on 2026-11-17
+  (America/Argentina/Cordoba). A transient earlier HTTP 403 is no longer
+  reproduced; its root cause was not conclusively identified.
+- Privacy and terms pages in pt-BR, English and es-AR were **approved by the
+  operator on 2026-11-18**. Draft banners and noindex metadata have been
+  removed in PR #4. A manual-only GitHub Pages deployment workflow is
+  prepared, but the pages are **not yet deployed or HTTPS-verified**.
 - The archive builder rejects placeholder and non-HTTPS submission values and
   requires missing publication metadata to be completed deliberately.
 
@@ -32,41 +40,53 @@ Last checked: 2026-11-15.
 - Availability and stability over time, behavior under concurrent calls, memory
   peaks, restarts and potential free-host sleep or suspension have **not** been
   load-tested. An observed always-on label is not a contractual uptime guarantee.
-- A proposed per-process request-size, concurrency and rate guard is now in
-  this repository but **not yet deployed** to the active Enzonic server.
-  Edge-layer rate limiting and abusive-client isolation are not verified.
+- The operator confirmed the guarded `main.py` and `guard.py` files on Enzonic;
+  a post-restart functional MCP check passed. Reaching the live admission
+  thresholds (429/413/503) has not been safely tested against the public server.
+  Edge-layer rate limiting and per-client isolation remain unverified.
   IMA request pacing is per process; keep one replica until shared limits exist.
-- Enzonic's terms for this specific publicly accessible API use, capacity
-  guarantees, billing/overage behavior, exact log retention, and country-specific
-  eligibility have not all been independently verified.
+- On 2026-11-18, the operator provided a screenshot of an Enzonic support
+  email confirming the public read-only MCP use on the free plan and stating
+  **“Data is not retained.”** This is provider-supplied confirmation, not an
+  itemized declaration about transient processing or other network providers.
+  Capacity guarantees, billing/overage and country-specific eligibility
+  remain unverified.
 - Enzonic's `/tmp/balneabilidade` cache is ephemeral; persistence across restarts
   is not verified. The currently observed deployment was configured through the
   hosting panel; a fresh Git-based redeploy from this repository is not yet tested.
 - All five tools were invoked in the connected ChatGPT integration. The five
-  positive review scenarios were also **manually exercised at MCP tool level**
-  on 2026-11-17, including complete 2025 pagination for Campeche (145
-  records). See [review evidence](REVIEW_VALIDATION.md). The model-level
-  prompt selection and three negative no-tool cases **still require a real
-  ChatGPT recorded review**; no recording URL exists yet.
-  See [recording guide](REVIEW_DEMO.md).
-- No public privacy policy page, terms-of-service page, reviewer-accessible demo
-  recording, verified publisher identity, selected country availability, or
-  truthful commerce declaration has been supplied.
+  positive review scenarios were also manually exercised at MCP tool level,
+  including complete 2025 pagination for Campeche (145 records). A manual
+  GitHub Actions review run [#44228356588](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44228356588)
+  passed all five tool-layer cases and uploaded review-tool-evidence.zip.
+  See [review evidence](REVIEW_VALIDATION.md). Model-level tool selection and
+  three negative no-tool scenarios still require a real ChatGPT recorded review;
+  no reviewer video exists yet. See [recording guide](REVIEW_DEMO.md).
+- The operator approved the public privacy and terms pages on 2026-11-18,
+  but GitHub Pages publishing and URL checks are **not yet complete**.
+  The operator's screenshot records Enzonic's permission and no-retention
+  statement. The technical categories of transient processing or independent
+  network providers were not detailed. The OpenAI individual verification
+  screen shows Approved; reviewer-accessible recording, selected countries
+  and commerce declaration still need completion. The operator supplied the
+  public name Lucio Bottacin and privacy contact luciobotacin@gmail.com.
 - No public submission ZIP has been generated with those verified facts, and no
   submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
 ## Next steps
 
-1. Validate the admission-guard changes in CI and review before live deployment.
-2. Perform a manual Enzonic restart/recovery test and evaluate actual peak
-   resource use, cache behavior, upstream egress and abuse protection.
-   Review the Enzonic acceptable-use terms for this particular public API.
-3. Prepare accurate public privacy and terms pages, publisher verification,
-   a reviewer-accessible recording, and the publication declarations.
+1. Record Enzonic's written approval and no-retention statement (done in
+   the legal review checklist); review the final legal text, attribution and
+   contact information before publishing. See [legal review](LEGAL_REVIEW.md).
+2. Merge the approved legal PR; configure GitHub Pages to deploy from
+   GitHub Actions, manually run the Pages workflow and verify all six
+   HTTPS URLs before using them in submission metadata.
+3. Continue resource/abuse testing without flooding the shared free host;
+   complete publisher verification and a reviewer-accessible demonstration.
 4. Run the five positive and three negative prompts through ChatGPT, record
-   tool selection and user-facing results, and upload an accessible demo video.
-   Then build and check the single-plugin ZIP.
+   tool selection and user-visible answers, upload a reviewer-accessible demo
+   video, then build and check the single-plugin ZIP.
 5. Complete the publisher and domain verification, and submit for directory review.
 
 See [`ENZONIC.md`](ENZONIC.md) for the deployment runbook and

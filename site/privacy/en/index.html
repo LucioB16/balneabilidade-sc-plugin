@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Privacy policy — Balneabilidade SC, independent IMA/SC bathing-water information tool.">
+<title>Privacy policy · Balneabilidade SC</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="canonical" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/en/">
+<link rel="alternate" hreflang="pt-BR" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/">
+<link rel="alternate" hreflang="en" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/en/">
+<link rel="alternate" hreflang="es-AR" href="https://luciob16.github.io/balneabilidade-sc-plugin/privacy/es/">
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="/balneabilidade-sc-plugin/">Balneabilidade SC</a><nav aria-label="Primary"><a href="/balneabilidade-sc-plugin/">Home</a><a href="/balneabilidade-sc-plugin/privacy/en/">Privacy policy</a><a href="/balneabilidade-sc-plugin/terms/en/">Terms of service</a></nav></div></header>
+<main class="wrap">
+<div class="eyebrow">Balneabilidade SC / Privacy</div>
+<h1>Privacy policy</h1>
+<div class="langs" aria-label="Languages"><a href="/balneabilidade-sc-plugin/privacy/" >Português</a><a href="/balneabilidade-sc-plugin/privacy/en/" aria-current="page">English</a><a href="/balneabilidade-sc-plugin/privacy/es/" >Español</a></div>
+<p class="meta">Last updated: 18/11/2026</p>
+<p>This policy describes the handling of data by <strong>Balneabilidade SC</strong>, an independent, open-source, read-only MCP service maintained through <a href="https://github.com/LucioB16/balneabilidade-sc-plugin">the LucioB16 GitHub repository</a>. It is not operated or endorsed by IMA/SC.</p>
+<p><strong>Service operator:</strong> Lucio Bottacin.</p>
+<h2>1. What the service receives</h2>
+<p>When a user invokes a tool, the MCP server receives only the task parameters sent by the client: a beach name, municipality, sampling-point identifier, selected dates, result limit or bulletin page. These fields are used to find published water-sampling data. We do not request account credentials, payment details, government IDs or full chat transcripts.</p>
+<p>Hosting and network providers may also process technical connection information (such as IP address, request timestamp, HTTP headers and error data) to deliver, secure and troubleshoot the service. Enzonic support stated that data is not retained but did not itemize the fields that may be processed temporarily.</p>
+<h2>2. Why the data is processed</h2>
+<p>Task parameters are processed to look up and return dated IMA/SC bulletins, sampling points, historical results and bulletin images. Technical metadata may be used by infrastructure providers for routing, availability, abuse prevention and operational security.</p>
+<h2>3. Storage and retention</h2>
+<p>The MCP application has no user accounts or conversation database. It does not intentionally retain tool arguments or complete conversations. Uvicorn access logging is disabled; application-level tool-error logging records the exception type rather than the request body.</p>
+<p>To reduce requests to the official source, the application caches <em>public IMA/SC documents</em>, not user profiles: index and analyses (1 hour), sampling-point catalog (24 hours), current-year history (6 hours), older-year history (30 days), and downloaded bulletin PDFs (up to 3,650 days by cache expiration settings). These are cache validity periods; expired files may remain on disk until cleared or the ephemeral runtime storage resets.</p>
+<p><strong>Hosting provider confirmation:</strong> in an email response to an inquiry about this public MCP server and log retention, Enzonic support confirmed this use of the free plan and stated: “Data is not retained.” The reply did not specify individual categories of data or any independent network providers' logs. This statement does not exclude transient processing required to operate the network and does not describe the application's separate cache of public documents.</p>
+<h2>4. Who receives data</h2>
+<p><a href="https://enzonic.com/legal/privacy">Enzonic</a> provides hosting and may rely on infrastructure subprocessors. The MCP service requests public-source information from <a href="https://balneabilidade.ima.sc.gov.br/">IMA/SC</a>. This legal website is prepared for <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Pages</a>, which may process visits to its pages. The ChatGPT/Codex platform separately handles conversations and tool invocations under its own terms. No third-party advertising or analytics code is included in these pages or in the MCP application.</p>
+<h2>5. User choices and privacy requests</h2>
+<p>Users can stop calling these tools or disconnect the plugin through their client. Do not enter private or sensitive information in beach-search parameters. Platform-side chat storage is controlled by the platform, not this MCP server.</p>
+<p>For general questions, use <a href="https://github.com/LucioB16/balneabilidade-sc-plugin/issues">GitHub Issues</a>. <strong>GitHub Issues are public; never publish personal information or sensitive requests there.</strong> To make a privacy-related request, contact Lucio Bottacin directly by email: <a href="mailto:luciobotacin@gmail.com">luciobotacin@gmail.com</a>. Rights of access, correction, deletion or objection may apply under relevant law, subject to what data is actually held.</p>
+<h2>6. Changes and scope</h2>
+<p>This notice covers only the independent Balneabilidade SC project, not IMA/SC, Enzonic, GitHub or OpenAI services. Changes will be reflected here with a revised date. Published readings are not live environmental measurements.</p>
+</main>
+<footer class="foot"><div class="wrap"><a href="/balneabilidade-sc-plugin/privacy/en/">Privacy policy</a><a href="/balneabilidade-sc-plugin/terms/en/">Terms of service</a><a href="https://github.com/LucioB16/balneabilidade-sc-plugin">Source code</a><p>Balneabilidade SC — independent project. Not affiliated with or endorsed by IMA/SC.</p></div></footer>
+</body></html>
