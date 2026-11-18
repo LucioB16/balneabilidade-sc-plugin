@@ -2,6 +2,11 @@ name: Build plugin package for public review
 
 on:
   workflow_dispatch:
+    inputs:
+      demo_recording_url:
+        description: "Actual reviewer-accessible HTTPS video URL (no placeholders)"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -14,8 +19,50 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build plugin ZIP without inventing missing review metadata
-        run: python scripts/build_plugin_archive.py --mcp-url https://balneabilidade-sc.enzonic.dev/mcp --metadata submission/metadata.template.json
+      - name: Prepare ignored final metadata
+        env:
+          DEMO_RECORDING_URL: ${{ inputs.demo_recording_url }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          metadata = json.loads(Path("submission/metadata.template.json").read_text(encoding="utf-8"))
+          assert metadata["countries"] == [], "World-wide availability must be explicit"
+          assert metadata["commerce"] is False, "Non-commerce setting must remain false"
+          metadata["demo_recording_url"] = os.environ["DEMO_RECORDING_URL"]
+          Path("submission/metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("Prepared ignored metadata for the review ZIP.")
+          PY
+      - name: Build strict final-review ZIP
+        run: |
+          python scripts/build_plugin_archive.py \
+            --mcp-url https://balneabilidade-sc.enzonic.dev/mcp \
+            --metadata submission/metadata.json \
+            --require-demo
+      - name: Verify packaged review inputs
+        env:
+          DEMO_RECORDING_URL: ${{ inputs.demo_recording_url }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile
+          paths = sorted(Path("dist").glob("balneabilidade-sc-plugin-*.zip"))
+          assert len(paths) == 1, "Exactly one plugin ZIP expected"
+          with ZipFile(paths[0]) as z:
+              manifest = json.loads(z.read("balneabilidade-sc/plugin.json"))
+              mcp = json.loads(z.read("balneabilidade-sc/mcp.json"))
+          ext = manifest["extensions"]["com.openai"]
+          assert ext["review"]["demo_recording_url"] == os.environ["DEMO_RECORDING_URL"]
+          assert ext["publication"]["countries"] == []
+          assert ext["review"]["commerce"] is False
+          assert len(ext["review"]["test_cases"]["positive"]) == 5
+          assert len(ext["review"]["test_cases"]["negative"]) == 3
+          assert mcp["mcpServers"]["balneabilidade-sc"]["url"] == "https://balneabilidade-sc.enzonic.dev/mcp"
+          print("Validated review URL, countries, commerce, test cases and MCP URL.")
+          PY
       - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
         with:
