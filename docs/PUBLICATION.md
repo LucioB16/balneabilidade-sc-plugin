@@ -69,9 +69,13 @@ Last checked: 2026-11-18.
   (`outputs/edited/balneabilidade-sc-walkthrough.mp4`, SHA-256
   `8D6B60D954C495189614A2981B55FE662AA7796140FB915223D2AF3E56D3450A`).
   It is a composition of real frames/events, **not a continuous capture**.
-  Its bytes, hash and redactions were not independently inspected here;
-  no public video URL exists. Do not mark the reviewer recording as uploaded.
-  See [walkthrough guide](REVIEW_DEMO.md).
+  The uploaded MP4 was independently inspected on 2026-11-18; its SHA-256
+  exactly matched the reported value, and the complete video decoded
+  successfully. It has editorial flaws and cannot prove non-invocation or
+  complete pagination; see [video audit](VIDEO_AUDIT_20261118.md).
+  The original frame/event manifest was not inspected and redactions were
+  sampled rather than checked frame by frame. No public video URL exists.
+  Do not mark the reviewer recording as uploaded.
 - The operator approved and published the public legal pages on 2026-11-18.
   GitHub Pages deployment [#44308178741](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44308178741)
   passed, and the operator showed the rendered homepage. All six individual
@@ -105,8 +109,11 @@ Last checked: 2026-11-18.
    incognito session. Disclose that the video is edited/composited rather
    than a continuous recording; assess whether an additional continuous
    capture is needed. Keep the reported video SHA-256 for comparison; verify
-   the actual local bytes and redactions before uploading. Do not invent
-   `demo_recording_url`.
+   the corrected export's actual hash and redactions before uploading.
+   The current file's SHA-256 has been independently verified, but a revised
+   version will have a different hash. See
+   [independent video audit](VIDEO_AUDIT_20261118.md).
+   Do not invent `demo_recording_url`.
 2. **Country availability:** operator decision is pending. **Recommendation:
    `countries: []` for worldwide availability**, because beaches in Santa
    Catarina are relevant to international travelers and the tool supports

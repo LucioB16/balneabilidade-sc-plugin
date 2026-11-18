@@ -29,10 +29,12 @@ positive browser-run scenarios is **indirect**.
 
 A local edited video is **reported as created but is not uploaded**, and there
 is still **no reviewer-accessible video URL**. It is a composition of actual
-recorded frames/events, **not a continuous screen capture**. Neither its bytes
-nor the machine-local reports were available for independent inspection
-during this documentation update. Do not misrepresent its provenance or claim
-that the reviewer has access.
+recorded frames/events, **not a continuous screen capture**. The **MP4 was independently inspected after the original documentation
+update**, and its SHA-256 matches the reported hash; see
+[VIDEO_AUDIT_20261118.md](VIDEO_AUDIT_20261118.md). The machine-local
+event/frame manifest, separate clips, original recording and reports have
+**not** been inspected. This does not establish an unedited provenance or
+a reviewer-accessible public URL.
 
 All bathing-water information is **dated published IMA/SC sampling**, not
 real-time measurements or a safety guarantee.
@@ -113,8 +115,11 @@ non-plugin content but could not establish the underlying tool trace.
 - Video construction: compilation of **real UI frames/events**, **not a
   continuous screen recording**. The reporter says account name/avatar were
   redacted in every included frame; the first P1 frame showing the sidebar
-  was excluded. These privacy claims and the checksum were **not
-  independently verified** in this update.
+  was excluded. The **MP4 checksum has since been independently verified**. A one-frame-per-
+  second visual sample and selected native-resolution frames showed no
+  readable account identifiers, but a complete frame-by-frame privacy
+  inspection was **not** performed. See
+  [video audit](VIDEO_AUDIT_20261118.md).
 - **No video URL, video upload, public media share or review submission.**
   A local filename is not a reviewer-accessible URL.
 
