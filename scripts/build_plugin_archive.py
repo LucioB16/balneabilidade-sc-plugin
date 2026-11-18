@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a public-submission ZIP only when verified publication details exist."""
+"""Build a draft ZIP with known metadata; require video only for final review."""
 
 from __future__ import annotations
 
@@ -50,8 +50,11 @@ def apply_submission_metadata(manifest: dict, metadata: dict) -> None:
         url = metadata.get(field, interface.get(field))
         interface[field] = validate_https_url(url, field)
 
-    demo_url = validate_https_url(metadata.get("demo_recording_url"), "demo_recording_url")
-    review["demo_recording_url"] = demo_url
+    # OpenAI permits package upload before the video is ready.
+    # The review submission, not the draft ZIP, requires the demonstration.
+    demo_url = metadata.get("demo_recording_url")
+    if demo_url is not None:
+        review["demo_recording_url"] = validate_https_url(demo_url, "demo_recording_url")
 
     commerce = metadata.get("commerce")
     commerce_description = metadata.get("commerce_description")
@@ -62,15 +65,18 @@ def apply_submission_metadata(manifest: dict, metadata: dict) -> None:
     review["commerce"] = commerce
     review["commerce_description"] = commerce_description.strip()
 
+    # Country targeting is optional. Null means no decision has been made:
+    # omit the field rather than silently choosing global availability.
     countries = metadata.get("countries")
-    if not isinstance(countries, list) or any(
-        not isinstance(country, str) or not re.fullmatch(r"[A-Z]{2}", country) for country in countries
-    ):
-        raise PackageError("Set countries to a chosen list of ISO-style country codes; [] means unrestricted")
-    publication["countries"] = countries
+    if countries is not None:
+        if not isinstance(countries, list) or any(
+            not isinstance(country, str) or not re.fullmatch(r"[A-Z]{2}", country) for country in countries
+        ) or len(countries) != len(set(countries)):
+            raise PackageError("countries must be unique uppercase 2-letter codes, or null to omit")
+        publication["countries"] = countries
 
 
-def build_archive(mcp_url: str, metadata_path: Path, output_path: Path) -> Path:
+def build_archive(mcp_url: str, metadata_path: Path, output_path: Path, *, require_demo: bool = False) -> Path:
     validate_https_url(mcp_url, "MCP endpoint")
     if not metadata_path.is_file():
         raise PackageError(f"Submission metadata file not found: {metadata_path}")
@@ -83,6 +89,8 @@ def build_archive(mcp_url: str, metadata_path: Path, output_path: Path) -> Path:
     if not isinstance(metadata, dict) or not isinstance(manifest, dict):
         raise PackageError("Manifest and submission metadata must be JSON objects")
     apply_submission_metadata(manifest, metadata)
+    if require_demo and not manifest["extensions"]["com.openai"]["review"].get("demo_recording_url"):
+        raise PackageError("Final review requires an actual reviewer-accessible demo_recording_url")
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="balneabilidade-plugin-") as temporary:
@@ -138,11 +146,15 @@ def main() -> int:
         help="Private JSON file containing verified listing and publication facts",
     )
     parser.add_argument("--output", type=Path, help="Output ZIP path")
+    parser.add_argument(
+        "--require-demo", action="store_true",
+        help="For final review, fail if a reviewer-accessible demo URL is missing",
+    )
     args = parser.parse_args()
     version = json.loads((PLUGIN_SOURCE / "plugin.json").read_text(encoding="utf-8"))["version"]
     output = args.output or ROOT / "dist" / f"balneabilidade-sc-plugin-{version}.zip"
     try:
-        result = build_archive(args.mcp_url, args.metadata, output)
+        result = build_archive(args.mcp_url, args.metadata, output, require_demo=args.require_demo)
     except PackageError as exc:
         parser.error(str(exc))
     print(result)

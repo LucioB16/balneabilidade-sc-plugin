@@ -90,12 +90,15 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   handshake validation against the pinned server.
 - `docs/`: Enzonic runbook, data-handling facts, publication status, and
   [legal-page review checklist](docs/LEGAL_REVIEW.md).
-- `site/`: approved GitHub Pages privacy/terms pages in pt-BR, en and es-AR;
-  publication through the manual workflow is still pending.
+- `site/`: approved and published privacy/terms pages in pt-BR, en and es-AR,
+  deployed via GitHub Pages on 2026-11-18.
+- `docs/DOMAIN_VERIFICATION.md`: OpenAI MCP-host challenge workflow;
+  the challenge route is implemented but not yet deployed to Enzonic.
 - `scripts/check_remote_mcp.py`: opt-in external HTTPS/MCP health check for
   operator-controlled restart validation.
 
-The submission archive deliberately does not use an example, preview, or
-development URL. The builder requires real policy URLs, a verified publisher
-identity, country selection, commerce declaration, and an accessible recorded
-demo before it creates an upload candidate.
+The submission archive uses the public production MCP URL, not a preview or
+development tunnel. It can now produce an uploadable **draft** with the
+approved legal URLs and the documented non-commerce declaration, while
+leaving the demo and country targeting unspecified until those decisions are
+available. Final review still requires the real video and completed settings.

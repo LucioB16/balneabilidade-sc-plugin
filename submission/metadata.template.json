@@ -1,9 +1,9 @@
 {
-  "developerName": null,
-  "privacyPolicyURL": null,
-  "termsOfServiceURL": null,
+  "developerName": "Lucio Bottacin",
+  "privacyPolicyURL": "https://luciob16.github.io/balneabilidade-sc-plugin/privacy/",
+  "termsOfServiceURL": "https://luciob16.github.io/balneabilidade-sc-plugin/terms/",
   "demo_recording_url": null,
-  "commerce": null,
-  "commerce_description": null,
+  "commerce": false,
+  "commerce_description": "Read-only access to official published IMA/SC bathing-water data. The plugin does not sell products, book services, or process payments.",
   "countries": null
 }

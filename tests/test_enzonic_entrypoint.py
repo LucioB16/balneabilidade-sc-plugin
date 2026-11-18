@@ -17,7 +17,10 @@ class EnzonicEntrypointTests(unittest.TestCase):
             runpy.run_path(str(ROOT / "main.py"), run_name="__main__")
         start.assert_called_once()
         args, kwargs = start.call_args
-        self.assertIsInstance(args[0], PublicMcpGuard)
+        from main import DomainChallengeApp
+
+        self.assertIsInstance(args[0], DomainChallengeApp)
+        self.assertIsInstance(args[0].downstream, PublicMcpGuard)
         self.assertEqual(kwargs["host"], "0.0.0.0")
         self.assertEqual(kwargs["port"], 28982)
         self.assertFalse(kwargs["access_log"])
