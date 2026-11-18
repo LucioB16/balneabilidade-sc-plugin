@@ -27,14 +27,16 @@ prove** which MCP tools were used, whether all history pages were fetched, or
 that any of N1–N3 invoked **no** plugin tool. Tool attribution for the
 positive browser-run scenarios is **indirect**.
 
-A local edited video is **reported as created but is not uploaded**, and there
-is still **no reviewer-accessible video URL**. It is a composition of actual
-recorded frames/events, **not a continuous screen capture**. The **MP4 was independently inspected after the original documentation
-update**, and its SHA-256 matches the reported hash; see
-[VIDEO_AUDIT_20261118.md](VIDEO_AUDIT_20261118.md). The machine-local
-event/frame manifest, separate clips, original recording and reports have
-**not** been inspected. This does not establish an unedited provenance or
-a reviewer-accessible public URL.
+The originally edited **v1 MP4** was independently inspected: see
+[VIDEO_AUDIT_20261118.md](VIDEO_AUDIT_20261118.md). On 2026-11-18
+the operator uploaded a revised **v2 MP4**, and the file itself was
+independently checked (215 s, H.264, full decode PASS, exact SHA-256 match).
+The new video fixes the overlapping caption and includes P5's first failed
+attempt and retry, as documented in the
+[version 2 audit](VIDEO_AUDIT_V2_20261118.md). Both versions are composites
+of actual browser frames/events, **not continuous screen captures**.
+Source event files were not independently inspected and **no
+reviewer-accessible video URL has been supplied**.
 
 All bathing-water information is **dated published IMA/SC sampling**, not
 real-time measurements or a safety guarantee.
@@ -115,11 +117,12 @@ non-plugin content but could not establish the underlying tool trace.
 - Video construction: compilation of **real UI frames/events**, **not a
   continuous screen recording**. The reporter says account name/avatar were
   redacted in every included frame; the first P1 frame showing the sidebar
-  was excluded. The **MP4 checksum has since been independently verified**. A one-frame-per-
-  second visual sample and selected native-resolution frames showed no
-  readable account identifiers, but a complete frame-by-frame privacy
-  inspection was **not** performed. See
-  [video audit](VIDEO_AUDIT_20261118.md).
+  was excluded. The **v1 MP4 checksum was independently verified**. The corrected **v2**
+  MP4 has now also been examined; its hash matches the operator's new
+  report and sampled frames show improved presentation with masking.
+  Neither media audit is an exhaustive frame-by-frame privacy clearance.
+  See [v1 audit](VIDEO_AUDIT_20261118.md) and
+  [v2 audit](VIDEO_AUDIT_V2_20261118.md).
 - **No video URL, video upload, public media share or review submission.**
   A local filename is not a reviewer-accessible URL.
 
