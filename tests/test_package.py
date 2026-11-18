@@ -19,6 +19,12 @@ class PackageMetadataTests(unittest.TestCase):
         cases = manifest["extensions"]["com.openai"]["review"]["test_cases"]
         self.assertLessEqual(len(interface["displayName"]), 30)
         self.assertLessEqual(len(interface["shortDescription"]), 30)
+        self.assertNotIn("official", interface["shortDescription"].lower())
+        self.assertIn("independent", interface["longDescription"].lower())
+        translations = manifest["extensions"]["com.openai"]["publication"]["translations"]
+        for locale in ("es-AR", "pt-BR"):
+            self.assertLessEqual(len(translations[locale]["subtitle"]), 30)
+            self.assertNotIn("oficial", translations[locale]["subtitle"].lower())
         self.assertLessEqual(len(interface["longDescription"]), 4000)
         self.assertEqual(len(cases["positive"]), 5)
         self.assertEqual(len(cases["negative"]), 3)

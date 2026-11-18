@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "balneabilidade-sc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Published IMA/SC bathing-water results for beaches in Santa Catarina, Brazil.",
   "repository": "https://github.com/LucioB16/balneabilidade-sc-plugin",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "com.openai": {
       "interface": {
         "displayName": "Balneabilidade SC",
-        "shortDescription": "Official bathing data for SC",
+        "shortDescription": "Bathing-water results for SC",
         "longDescription": "Check IMA/SC's published bathing-water results for monitored beaches in Santa Catarina, Brazil. Get the latest dated bulletin result, preserve results for each sampling point, and review historical measurements. Answers identify the sampling date, bulletin date, source, and data freshness. Results are published measurements, not real-time readings or a safety guarantee. This independent plugin is not developed, operated, or endorsed by IMA/SC.",
         "category": "Travel",
         "capabilities": [],
@@ -77,14 +77,14 @@
         }
       },
       "publication": {
-        "release_notes": "Initial package with dated IMA/SC bathing status, sampling-point details, and historical measurements.",
+        "release_notes": "Updated listing subtitles to distinguish the independent plugin from the official IMA/SC data publisher. No changes to MCP tools or data handling.",
         "translations": {
           "es-AR": {
-            "subtitle": "Balneabilidad oficial de SC",
+            "subtitle": "Datos de balneabilidad de SC",
             "description": "Consultá los resultados publicados por IMA/SC para playas monitoreadas de Santa Catarina. Revisá la última medición fechada, el historial y cada punto de muestreo, con fechas, fuente y antigüedad de los datos. No son lecturas en tiempo real ni una garantía de seguridad. Plugin independiente, sin afiliación con IMA/SC."
           },
           "pt-BR": {
-            "subtitle": "Balneabilidade oficial de SC",
+            "subtitle": "Dados de balneabilidade de SC",
             "description": "Consulte os resultados publicados pelo IMA/SC para praias monitoradas de Santa Catarina. Veja a medição datada mais recente, o histórico e cada ponto de coleta, com datas, fonte e atualização dos dados. Não são leituras em tempo real nem uma garantia de segurança. Plugin independente, sem vínculo com o IMA/SC."
           }
         }
