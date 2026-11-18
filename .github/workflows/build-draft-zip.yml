@@ -15,11 +15,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Build draft ZIP without inventing a video URL or countries
-        run: |
-          python scripts/build_plugin_archive.py \\
-            --mcp-url https://balneabilidade-sc.enzonic.dev/mcp \\
-            --metadata submission/metadata.template.json \\
-            --output dist/balneabilidade-sc-plugin-draft.zip
+        run: python scripts/build_plugin_archive.py --mcp-url https://balneabilidade-sc.enzonic.dev/mcp --metadata submission/metadata.template.json --output dist/balneabilidade-sc-plugin-draft.zip
       - name: Upload ZIP artifact
         uses: actions/upload-artifact@v4
         with:
