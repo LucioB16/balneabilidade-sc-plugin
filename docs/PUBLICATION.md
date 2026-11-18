@@ -28,10 +28,11 @@ Last checked: 2026-11-18.
   passed initialize, tool list and a real IMA/SC status call on 2026-11-17
   (America/Argentina/Cordoba). A transient earlier HTTP 403 is no longer
   reproduced; its root cause was not conclusively identified.
-- Privacy and terms pages in pt-BR, English and es-AR were **approved by the
-  operator on 2026-11-18**. Draft banners and noindex metadata have been
-  removed in PR #4. A manual-only GitHub Pages deployment workflow is
-  prepared, but the pages are **not yet deployed or HTTPS-verified**.
+- Privacy and terms pages in pt-BR, English and es-AR were approved on
+  2026-11-18 and published via GitHub Pages workflow
+  [#44308178741](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44308178741).
+  The operator's screenshot shows the homepage rendering correctly; the
+  six individual legal URLs have not been independently fetched here.
 - The archive builder rejects placeholder and non-HTTPS submission values and
   requires missing publication metadata to be completed deliberately.
 
@@ -62,16 +63,18 @@ Last checked: 2026-11-18.
   See [review evidence](REVIEW_VALIDATION.md). Model-level tool selection and
   three negative no-tool scenarios still require a real ChatGPT recorded review;
   no reviewer video exists yet. See [recording guide](REVIEW_DEMO.md).
-- The operator approved the public privacy and terms pages on 2026-11-18,
-  but GitHub Pages publishing and URL checks are **not yet complete**.
+- The operator approved and published the public legal pages on 2026-11-18.
+  Confirm that all six direct URLs are accessible before final review.
   The operator's screenshot records Enzonic's permission and no-retention
   statement. The technical categories of transient processing or independent
   network providers were not detailed. The OpenAI individual verification
   screen shows Approved; reviewer-accessible recording, selected countries
   and commerce declaration still need completion. The operator supplied the
   public name Lucio Bottacin and privacy contact luciobotacin@gmail.com.
-- No public submission ZIP has been generated with those verified facts, and no
-  submission, directory approval or listing has occurred.
+- A manual uploadable-draft ZIP workflow is available. The initial ZIP can
+  omit the video and country allowlist under the official schema; final
+  review still requires an accessible video and deliberate country targeting.
+  No submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
 ## Next steps
@@ -79,15 +82,17 @@ Last checked: 2026-11-18.
 1. Record Enzonic's written approval and no-retention statement (done in
    the legal review checklist); review the final legal text, attribution and
    contact information before publishing. See [legal review](LEGAL_REVIEW.md).
-2. Merge the approved legal PR; configure GitHub Pages to deploy from
-   GitHub Actions, manually run the Pages workflow and verify all six
-   HTTPS URLs before using them in submission metadata.
+2. Verify all six legal URLs directly; run the manual draft ZIP build and
+   upload the generated archive to OpenAI as a **draft**, not a review
+   submission.
 3. Continue resource/abuse testing without flooding the shared free host;
    complete publisher verification and a reviewer-accessible demonstration.
 4. Run the five positive and three negative prompts through ChatGPT, record
    tool selection and user-visible answers, upload a reviewer-accessible demo
    video, then build and check the single-plugin ZIP.
-5. Complete the publisher and domain verification, and submit for directory review.
+5. In the plugin portal, obtain the MCP-domain challenge token and deploy the
+   prepared Enzonic challenge route; verify the domain and tool scan, then
+   submit for directory review once the demo and selected countries are ready.
 
 See [`ENZONIC.md`](ENZONIC.md) for the deployment runbook and
 [`submission/README.md`](../submission/README.md) for submission-only facts.

@@ -3,8 +3,10 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
+import zipfile
 
-from scripts.build_plugin_archive import PackageError, apply_submission_metadata, validate_https_url
+from scripts.build_plugin_archive import PackageError, apply_submission_metadata, build_archive, validate_https_url
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +46,33 @@ class PackageMetadataTests(unittest.TestCase):
         for url in ("http://example.org/policy", "https://localhost/", "https://policy.example.test/privacy"):
             with self.subTest(url=url), self.assertRaises(PackageError):
                 validate_https_url(url, "privacyPolicyURL")
+
+
+    def test_draft_metadata_is_grounded_and_omits_missing_optional_fields(self) -> None:
+        metadata = json.loads((ROOT / "submission/metadata.template.json").read_text(encoding="utf-8"))
+        manifest = json.loads((ROOT / "plugin/plugin.json").read_text(encoding="utf-8"))
+        apply_submission_metadata(manifest, metadata)
+        ext = manifest["extensions"]["com.openai"]
+        self.assertEqual(ext["interface"]["developerName"], "Lucio Bottacin")
+        self.assertTrue(ext["interface"]["privacyPolicyURL"].startswith("https://"))
+        self.assertTrue(ext["interface"]["termsOfServiceURL"].startswith("https://"))
+        self.assertIs(ext["review"]["commerce"], False)
+        self.assertNotIn("demo_recording_url", ext["review"])
+        self.assertNotIn("countries", ext["publication"])
+
+    def test_draft_zip_builds_and_final_mode_rejects_missing_video(self) -> None:
+        metadata = ROOT / "submission/metadata.template.json"
+        with TemporaryDirectory() as temp:
+            zip_path = Path(temp) / "draft.zip"
+            build_archive("https://balneabilidade-sc.enzonic.dev/mcp", metadata, zip_path)
+            with zipfile.ZipFile(zip_path) as archive:
+                names = archive.namelist()
+                self.assertIn("balneabilidade-sc/plugin.json", names)
+                self.assertIn("balneabilidade-sc/mcp.json", names)
+                manifest = json.loads(archive.read("balneabilidade-sc/plugin.json"))
+                self.assertNotIn("demo_recording_url", manifest["extensions"]["com.openai"]["review"])
+            with self.assertRaisesRegex(PackageError, "Final review requires"):
+                build_archive("https://balneabilidade-sc.enzonic.dev/mcp", metadata, zip_path, require_demo=True)
 
     def test_submission_builder_requires_unprovided_publisher_facts(self) -> None:
         manifest = json.loads((ROOT / "plugin/plugin.json").read_text(encoding="utf-8"))
