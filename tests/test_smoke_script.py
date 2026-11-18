@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import json
 import unittest
+from io import BytesIO
+from urllib.error import HTTPError
 from unittest.mock import patch
 
-from scripts.check_remote_mcp import invoke, smoke
+from scripts.check_remote_mcp import describe_http_error, invoke, smoke
 
 
 class FakeResponse:
@@ -37,3 +39,36 @@ class SmokeTests(unittest.TestCase):
         with patch("scripts.check_remote_mcp.urlopen", return_value=FakeResponse(reply)):
             with self.assertRaises(ValueError):
                 invoke("https://example.org/mcp", "initialize", 1, {}, 5)
+
+    def test_http_error_diagnostics_are_useful_but_safe(self):
+        err = HTTPError(
+            "https://example.org/mcp",
+            403,
+            "Forbidden",
+            {
+                "Server": "envoy",
+                "CF-Ray": "abc-xyz",
+                "Content-Type": "text/html",
+                "Set-Cookie": "sensitive_session=secret",
+            },
+            BytesIO(b"<html><title>Access denied by edge proxy</title></html>"),
+        )
+        diagnostic = describe_http_error(err)
+        self.assertIn("HTTP 403 Forbidden", diagnostic)
+        self.assertIn("Server: envoy", diagnostic)
+        self.assertIn("CF-Ray: abc-xyz", diagnostic)
+        self.assertIn("Access denied by edge proxy", diagnostic)
+        self.assertNotIn("sensitive_session", diagnostic)
+        self.assertNotIn("Set-Cookie", diagnostic)
+
+    def test_http_error_diagnostics_cap_unstructured_body(self):
+        err = HTTPError(
+            "https://example.org/mcp",
+            403,
+            "Forbidden",
+            {},
+            BytesIO(b"No access " + b"x" * 2000),
+        )
+        diagnostic = describe_http_error(err)
+        self.assertLessEqual(len(diagnostic.split("Response: ")[-1]), 240)
+

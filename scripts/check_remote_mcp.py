@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
+import re
 import sys
 import time
 from urllib.error import HTTPError, URLError
@@ -26,7 +28,11 @@ def invoke(url: str, method: str, request_id: int, params: dict, timeout: float,
         {"jsonrpc": "2.0", "id": request_id, "method": method, "params": params},
         ensure_ascii=False,
     ).encode("utf-8")
-    headers = {"Content-Type": "application/json; charset=utf-8", "Accept": "application/json, text/event-stream"}
+    headers = {
+        "Content-Type": "application/json; charset=utf-8",
+        "Accept": "application/json, text/event-stream",
+        "User-Agent": "balneabilidade-sc-plugin-smoke/1.0 (+https://github.com/LucioB16/balneabilidade-sc-plugin)",
+    }
     if protocol:
         headers["MCP-Protocol-Version"] = protocol
     request = Request(url, data=payload, headers=headers, method="POST")
@@ -82,6 +88,27 @@ def smoke(url: str, timeout: float, check_source: bool = False) -> None:
             print("WARNING: unverified bulletin or provider warnings; inspect the source data")
 
 
+def describe_http_error(exc: HTTPError) -> str:
+    """Give useful 4xx/5xx diagnostics without logging cookies or credentials."""
+    selected = ("Server", "Via", "Content-Type", "X-Request-ID", "CF-Ray")
+    details = [f"HTTP {exc.code} {exc.reason}"]
+    for name in selected:
+        value = exc.headers.get(name) if exc.headers else None
+        if value:
+            details.append(f"{name}: {str(value).strip()[:160]}")
+
+    # Read at most 1 KiB from the public endpoint response; never print
+    # arbitrary headers such as Set-Cookie or authentication challenges.
+    body = exc.read(1024).decode("utf-8", errors="replace")
+    if body:
+        title = re.search(r"<title[^>]*>(.*?)</title>", body, re.IGNORECASE | re.DOTALL)
+        excerpt = title.group(1) if title else re.sub(r"<[^>]+>", " ", body)
+        excerpt = " ".join(html.unescape(excerpt).split())[:240]
+        if excerpt:
+            details.append(f"Response: {excerpt}")
+    return " | ".join(details)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default=DEFAULT_URL)
@@ -90,7 +117,10 @@ def main() -> int:
     args = parser.parse_args()
     try:
         smoke(args.url, args.timeout, args.check_source)
-    except (ValueError, HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+    except HTTPError as exc:
+        print(f"FAIL remote MCP smoke check: {describe_http_error(exc)}", file=sys.stderr)
+        return 1
+    except (ValueError, URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
         print(f"FAIL remote MCP smoke check: {exc}", file=sys.stderr)
         return 1
     return 0
