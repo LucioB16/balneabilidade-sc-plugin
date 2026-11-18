@@ -95,40 +95,38 @@ Last checked: 2026-11-18.
   the Enzonic **MCP domain verified**, the server **Configured**, five tools
   discovered and **no MCP scan findings**. These steps are completed,
   not pending as in earlier checklists.
-- **Still missing:** reviewer-accessible video URL, final reviewer evidence
-  and policy attestations. The operator **confirmed worldwide availability**
-  on 2026-11-18 (`countries: []` in the submission metadata template), but
-  the plugin is still in draft and has not been submitted or published.
-- A manual plugin ZIP build workflow is available. The initial ZIP can
-  omit the video while the reviewer recording is unavailable; the operator
-  approved worldwide targeting (`countries: []`). Final review still
-  requires an accessible video URL.
+- The operator uploaded the independently verified v2 MP4 to Google Drive:
+  <https://drive.google.com/file/d/1THkpgNpv2XjeSzgCV4XlGGR9NPXUob9H/view?usp=drivesdk>.
+  Google Drive metadata confirms `anyone:reader` access with search
+  discoverability disabled. **Independent incognito playback remains
+  unverified**. Review policy attestations and draft submission are pending.
+  Worldwide availability was explicitly approved (`countries: []`).
+- The manual **Build plugin package for public review** GitHub Actions
+  workflow accepts a real reviewer video URL, creates ignored metadata
+  in the runner and builds with `--require-demo`. It verifies contents
+  and returns an artifact; it never submits to OpenAI.
   No submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
 ## Remaining steps before review submission
 
-1. **Reviewer video:** the **v2 MP4 is technically verified**, with the
-   reported SHA-256 matching the uploaded bytes. Finish privacy inspection
-   of the export and upload this actual v2 video to a reviewer-accessible,
-   read-only URL; check playback in an unauthenticated incognito session.
-   Disclose that the video is edited/composited rather than a continuous
-   recording and retain P3/N1–N3 limitations; see
-   [v2 independent audit](VIDEO_AUDIT_V2_20261118.md).
-   Do not invent `demo_recording_url`.
-2. **Country availability: confirmed.** On 2026-11-18, the operator
-   explicitly selected worldwide availability. The tracked template
-   contains `countries: []` (no country allowlist restriction). This setting
-   is not a request to publish or submit the plugin.
-3. **Metadata:** confirm `developerName: "Lucio Bottacin"`, the live
-   privacy and terms HTTPS URLs, and `commerce: false`. Populate the
-   ignored `submission/metadata.json` with the *actual* video URL once
-   known, preserving the already approved `countries: []`. Keep the missing
-   video URL null until then.
-4. **Strict ZIP:** build with
-   `python scripts/build_plugin_archive.py --mcp-url "https://balneabilidade-sc.enzonic.dev/mcp" --metadata submission/metadata.json --require-demo`.
-   Review generated archive contents. If updating fields already imported
-   to OpenAI, upload the new version to the **existing** plugin.
+1. **Reviewer video:** v2 MP4 is uploaded and has confirmed
+   `anyone:reader` permissions. Verify playback in an incognito window;
+   check final masking, disclose that the footage is edited rather than
+   continuous, and preserve the P3/N1–N3 evidence limitations.
+2. **Country availability:** confirmed worldwide, `countries: []`.
+3. **Legal pages and metadata:** confirm the six published legal URLs load,
+   publisher identity `Lucio Bottacin`, `commerce: false`, correct
+   translations, and the real reviewer video URL. The tracked template
+   deliberately leaves the video URL null; only ignored metadata or
+   a workflow run should include it.
+4. **Strict ZIP:** run GitHub Actions → **Build plugin package for public
+   review**, input the real video URL and choose `main`. Download the
+   artifact, extract the actual `balneabilidade-sc-plugin-0.1.1.zip`,
+   and upload that plugin ZIP to the **existing** OpenAI draft. Check
+   imported fields and scan findings. Alternatively run the local
+   `build_plugin_archive.py` command with `--require-demo`.
+
 5. **Portal review:** domain verification and all five tool scans are
    **already completed**. Add the video URL in **Review information**,
    verify the five positive / three negative case descriptions, enter
