@@ -38,15 +38,20 @@ HTTPS privacy and terms URLs for an MCP listing.
 - The host or upstream networks can process connection metadata that this
   application itself does not intentionally log.
 - Source attribution: <https://balneabilidade.ima.sc.gov.br/>.
-- Enzonic privacy: <https://enzonic.com/legal/privacy>. The current
+- Enzonic privacy: <https://enzonic.com/legal/privacy>. The public
   [Enzonic privacy policy](https://enzonic.com/es/legal/privacy) describes
-  container configurations and console logs, latency diagnostics, hashed
-  IP addresses for DDoS mitigation/routing, and Cloudflare as an
-  infrastructure provider. **It does not clearly state a retention period
-  for console/ingress logs on this Python Web o app instance.**
-  The retention table on the separate Enzonic Deploy service must not be
-  assumed to apply here. Request written clarification from Enzonic before
-  representing any technical-log retention as fact.
+  potential technical processing, including console logs, latency and network
+  diagnostics. In a **2026-11-18 email response supplied by the operator**,
+  admin@enzonic.com replied to the two questions about hosting this public,
+  read-only MCP on the free Python plan and log retention: **“Yes to all of
+  your questions :D Enjoy!”** and, in a follow-up, **“Data is not retained.”**
+  This is written provider confirmation that the use is allowed and that the
+  provider reports no data retention, **not an itemized logging inventory**.
+  Its scope regarding transient processing and independent network
+  subprocessors was not detailed. The application separately caches public
+  IMA/SC documents. Do not equate these things or claim no data ever passes
+  through the provider. Keep the operator's screenshot of this email in the
+  internal review evidence; the repo does not contain the original email.
 - GitHub privacy: <https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement>.
 
 ## Blocking questions before publishing or submitting
@@ -60,12 +65,16 @@ HTTPS privacy and terms URLs for an MCP listing.
    is monitored and can receive privacy-related inquiries before publication.
    GitHub Issues remain public and **must not** be used to submit sensitive
    personal information or data-subject requests.
-3. **Enzonic technical metadata retention:** obtain its applicable log
-   categories, default durations, deletion policy and relevant subprocessors
-   for this exact **Python Web o app** product; do not substitute the
-   separately marketed *Enzonic Deploy* log-retention table.
-4. **Host allowed use:** confirm the free-tier server may operate a public,
-   read-only third-party-data MCP service under the current Enzonic AUP.
+3. **Enzonic support response received (2026-11-18):** the operator supplied
+   an email screenshot where admin@enzonic.com confirms this specific public
+   read-only MCP use is permitted under the free Python plan and states
+   “Data is not retained.” Record these facts with attribution. The exact
+   categories of transient technical processing and independent network
+   providers' practices were not specified; do not extrapolate the response
+   into a guarantee of no processing or no third-party logging.
+4. **Hosting acceptable-use inquiry:** ANSWERED in writing for this particular
+   service, according to the operator-provided email. No general exemption
+   from future policy changes or limits has been granted.
 5. **Law and jurisdiction:** have the operator review applicable privacy
    rules (including Brazil's LGPD if relevant), legal capacity, limitations
    and contact details; translations should be checked for legal consistency.
@@ -100,5 +109,6 @@ The draft pages now identify **Lucio Bottacin** as the service operator and
 provide the direct email **luciobotacin@gmail.com** for privacy-related
 inquiries. These details were provided by the operator for public display.
 This does **not** establish independent verification of legal identity or
-of control over the email inbox. The Enzonic logging and allowed-use checks,
-legal review, and manual GitHub Pages publication steps remain outstanding.
+of control over the email inbox. The Enzonic usage/retention inquiry has received an affirmative response.
+The operator still needs to review the final text, applicable law/data reuse,
+and the manual GitHub Pages publication steps.

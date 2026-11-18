@@ -1,6 +1,6 @@
 # Publication readiness
 
-Last checked: 2026-11-17.
+Last checked: 2026-11-18.
 
 ## Completed and externally observed
 
@@ -44,9 +44,12 @@ Last checked: 2026-11-17.
   thresholds (429/413/503) has not been safely tested against the public server.
   Edge-layer rate limiting and per-client isolation remain unverified.
   IMA request pacing is per process; keep one replica until shared limits exist.
-- Enzonic's terms for this specific publicly accessible API use, capacity
-  guarantees, billing/overage behavior, exact log retention, and country-specific
-  eligibility have not all been independently verified.
+- On 2026-11-18, the operator provided a screenshot of an Enzonic support
+  email confirming the public read-only MCP use on the free plan and stating
+  **“Data is not retained.”** This is provider-supplied confirmation, not an
+  itemized declaration about transient processing or other network providers.
+  Capacity guarantees, billing/overage and country-specific eligibility
+  remain unverified.
 - Enzonic's `/tmp/balneabilidade` cache is ephemeral; persistence across restarts
   is not verified. The currently observed deployment was configured through the
   hosting panel; a fresh Git-based redeploy from this repository is not yet tested.
@@ -54,21 +57,21 @@ Last checked: 2026-11-17.
   five positive and three negative review cases has not been evaluated end to end
   as a recorded review suite.
 - The public policy and terms pages are **drafts only**, not yet deployed.
-  Enzonic's technical log categories and retention period, OpenAI publisher
-  identity verification, reviewer-accessible recording, selected country
-  availability and commerce declaration still need verification. The operator
-  supplied the public name Lucio Bottacin and privacy contact
-  luciobotacin@gmail.com for the drafts; mailbox ownership/monitoring has not
-  been independently verified.
+  The operator's screenshot records Enzonic's permission and no-retention
+  statement. The technical categories of transient processing or independent
+  network providers were not detailed. The OpenAI individual verification
+  screen shows Approved; reviewer-accessible recording, selected countries
+  and commerce declaration still need completion. The operator supplied the
+  public name Lucio Bottacin and privacy contact luciobotacin@gmail.com.
 - No public submission ZIP has been generated with those verified facts, and no
   submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
 ## Next steps
 
-1. Confirm Enzonic's technical log retention and acceptable-use policy for
-   this deployment; verify the provided operator identity and contact address
-   for public use. Complete the [legal review checklist](LEGAL_REVIEW.md).
+1. Record Enzonic's written approval and no-retention statement (done in
+   the legal review checklist); review the final legal text, attribution and
+   contact information before publishing. See [legal review](LEGAL_REVIEW.md).
 2. Approve the translations, remove draft banners and disable noindex; deploy
    GitHub Pages manually and verify all six live URLs.
 3. Continue resource/abuse testing without flooding the shared free host;
