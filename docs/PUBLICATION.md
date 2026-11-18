@@ -1,6 +1,6 @@
 # Publication readiness
 
-Last checked: 2026-11-15.
+Last checked: 2026-11-17.
 
 ## Completed and externally observed
 
@@ -22,8 +22,15 @@ Last checked: 2026-11-15.
   The last returned a rendered PNG page from the official bulletin.
 - Package listing copy, icon, Spanish/Portuguese translations, five draft
   positive cases, three draft negative cases, Dockerfile, tests and CI exist.
-- The Enzonic documentation/entrypoint PR (#1) passed CI and was merged;
-  this new hardening PR requires its own clean test run before activation.
+- PRs #1–#3 were merged and passed CI; `main.py` and `guard.py` were
+  independently confirmed by the operator in Enzonic. External GitHub Actions
+  smoke run [#44224201321](https://github.com/LucioB16/balneabilidade-sc-plugin/actions/runs/44224201321)
+  passed initialize, tool list and a real IMA/SC status call on 2026-11-17
+  (America/Argentina/Cordoba). A transient earlier HTTP 403 is no longer
+  reproduced; its root cause was not conclusively identified.
+- Draft privacy and terms pages in pt-BR, English and es-AR, plus a manual-only
+  GitHub Pages deployment workflow, are prepared in a dedicated legal PR.
+  They are **not yet published or approved as legal statements**.
 - The archive builder rejects placeholder and non-HTTPS submission values and
   requires missing publication metadata to be completed deliberately.
 
@@ -32,9 +39,10 @@ Last checked: 2026-11-15.
 - Availability and stability over time, behavior under concurrent calls, memory
   peaks, restarts and potential free-host sleep or suspension have **not** been
   load-tested. An observed always-on label is not a contractual uptime guarantee.
-- A proposed per-process request-size, concurrency and rate guard is now in
-  this repository but **not yet deployed** to the active Enzonic server.
-  Edge-layer rate limiting and abusive-client isolation are not verified.
+- The operator confirmed the guarded `main.py` and `guard.py` files on Enzonic;
+  a post-restart functional MCP check passed. Reaching the live admission
+  thresholds (429/413/503) has not been safely tested against the public server.
+  Edge-layer rate limiting and per-client isolation remain unverified.
   IMA request pacing is per process; keep one replica until shared limits exist.
 - Enzonic's terms for this specific publicly accessible API use, capacity
   guarantees, billing/overage behavior, exact log retention, and country-specific
@@ -45,21 +53,23 @@ Last checked: 2026-11-15.
 - All five tools were invoked in the ChatGPT integration, but the full set of
   five positive and three negative review cases has not been evaluated end to end
   as a recorded review suite.
-- No public privacy policy page, terms-of-service page, reviewer-accessible demo
-  recording, verified publisher identity, selected country availability, or
-  truthful commerce declaration has been supplied.
+- The public policy and terms pages are **drafts only**, not yet deployed.
+  Enzonic's technical log categories and retention period, a confidential
+  privacy contact, publisher identity, reviewer-accessible recording, selected
+  country availability and commerce declaration still need verification.
 - No public submission ZIP has been generated with those verified facts, and no
   submission, directory approval or listing has occurred.
 - A private custom MCP connection is **not** a publicly listed ChatGPT/Codex plugin.
 
 ## Next steps
 
-1. Validate the admission-guard changes in CI and review before live deployment.
-2. Perform a manual Enzonic restart/recovery test and evaluate actual peak
-   resource use, cache behavior, upstream egress and abuse protection.
-   Review the Enzonic acceptable-use terms for this particular public API.
-3. Prepare accurate public privacy and terms pages, publisher verification,
-   a reviewer-accessible recording, and the publication declarations.
+1. Confirm Enzonic's technical log retention and acceptable-use policy for
+   this deployment; supply publisher legal identity and a private contact
+   channel. Complete the [legal review checklist](LEGAL_REVIEW.md).
+2. Approve the translations, remove draft banners and disable noindex; deploy
+   GitHub Pages manually and verify all six live URLs.
+3. Continue resource/abuse testing without flooding the shared free host;
+   complete publisher verification and a reviewer-accessible demonstration.
 4. Run all review cases in ChatGPT, then build and check the single-plugin ZIP.
 5. Complete the publisher and domain verification, and submit for directory review.
 
