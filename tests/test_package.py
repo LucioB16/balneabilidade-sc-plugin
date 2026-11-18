@@ -54,7 +54,7 @@ class PackageMetadataTests(unittest.TestCase):
                 validate_https_url(url, "privacyPolicyURL")
 
 
-    def test_draft_metadata_is_grounded_and_omits_missing_optional_fields(self) -> None:
+    def test_metadata_is_grounded_and_omits_missing_optional_fields(self) -> None:
         metadata = json.loads((ROOT / "submission/metadata.template.json").read_text(encoding="utf-8"))
         manifest = json.loads((ROOT / "plugin/plugin.json").read_text(encoding="utf-8"))
         apply_submission_metadata(manifest, metadata)
@@ -66,10 +66,10 @@ class PackageMetadataTests(unittest.TestCase):
         self.assertNotIn("demo_recording_url", ext["review"])
         self.assertNotIn("countries", ext["publication"])
 
-    def test_draft_zip_builds_and_final_mode_rejects_missing_video(self) -> None:
+    def test_package_builds_and_final_mode_rejects_missing_video(self) -> None:
         metadata = ROOT / "submission/metadata.template.json"
         with TemporaryDirectory() as temp:
-            zip_path = Path(temp) / "draft.zip"
+            zip_path = Path(temp) / "plugin-package.zip"
             build_archive("https://balneabilidade-sc.enzonic.dev/mcp", metadata, zip_path)
             with zipfile.ZipFile(zip_path) as archive:
                 names = archive.namelist()

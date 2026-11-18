@@ -1,6 +1,6 @@
 # Submission-only facts
 
-The ZIP builder now supports an **uploadable draft package** before the
+The ZIP builder now supports a **package suitable for uploading to the public review portal** before the
 reviewer video exists, as permitted by OpenAI's official documentation.
 The video is **still required for final MCP review submission**. Do not
 commit a completed `metadata.json` if it contains private review details.
@@ -32,7 +32,7 @@ repository and its issue tracker. Check both URLs again before submission.
 The MCP URL is passed separately to the archive builder and must be a stable,
 public HTTPS production endpoint, never a preview or development tunnel.
 
-Build an **uploadable draft** ZIP now, without falsely claiming a demo exists:
+Build the plugin ZIP using verified details, without inventing a demo URL:
 
 ```bash
 python scripts/build_plugin_archive.py \
@@ -40,7 +40,7 @@ python scripts/build_plugin_archive.py \
   --metadata submission/metadata.template.json
 ```
 
-Or use the manual GitHub Actions workflow **Build uploadable draft plugin ZIP**
+Or use the manual GitHub Actions workflow **Build plugin package for public review**
 to download the generated ZIP without installing Python locally.
 
 After recording the demo, add its real URL and choose the countries in your
@@ -54,6 +54,6 @@ python scripts/build_plugin_archive.py \
 ```
 
 The resulting ZIP is an upload candidate, not an approval or publication.
-The OpenAI dashboard can accept a draft ZIP without the video; complete
+The OpenAI dashboard initially keeps uploaded packages as drafts regardless of ZIP filename. Complete
 review requirements before pressing Submit for review. Leave country targeting
 unset until the intended availability is explicitly chosen.

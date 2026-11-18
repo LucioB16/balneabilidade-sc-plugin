@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a draft ZIP with known metadata; require video only for final review."""
+"""Build a plugin ZIP with verified metadata; require video for final review."""
 
 from __future__ import annotations
 
@@ -51,7 +51,7 @@ def apply_submission_metadata(manifest: dict, metadata: dict) -> None:
         interface[field] = validate_https_url(url, field)
 
     # OpenAI permits package upload before the video is ready.
-    # The review submission, not the draft ZIP, requires the demonstration.
+    # The review submission, not the initial package upload, requires a demonstration.
     demo_url = metadata.get("demo_recording_url")
     if demo_url is not None:
         review["demo_recording_url"] = validate_https_url(demo_url, "demo_recording_url")

@@ -98,7 +98,7 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   operator-controlled restart validation.
 
 The submission archive uses the public production MCP URL, not a preview or
-development tunnel. It can now produce an uploadable **draft** with the
+development tunnel. It produces an uploadable **package** with the
 approved legal URLs and the documented non-commerce declaration, while
 leaving the demo and country targeting unspecified until those decisions are
 available. Final review still requires the real video and completed settings.

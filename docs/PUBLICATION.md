@@ -71,7 +71,7 @@ Last checked: 2026-11-18.
   screen shows Approved; reviewer-accessible recording, selected countries
   and commerce declaration still need completion. The operator supplied the
   public name Lucio Bottacin and privacy contact luciobotacin@gmail.com.
-- A manual uploadable-draft ZIP workflow is available. The initial ZIP can
+- A manual plugin ZIP build workflow is available. The initial ZIP can
   omit the video and country allowlist under the official schema; final
   review still requires an accessible video and deliberate country targeting.
   No submission, directory approval or listing has occurred.
@@ -82,9 +82,9 @@ Last checked: 2026-11-18.
 1. Record Enzonic's written approval and no-retention statement (done in
    the legal review checklist); review the final legal text, attribution and
    contact information before publishing. See [legal review](LEGAL_REVIEW.md).
-2. Verify all six legal URLs directly; run the manual draft ZIP build and
-   upload the generated archive to OpenAI as a **draft**, not a review
-   submission.
+2. Verify all six legal URLs directly; run the manual plugin package build and
+   upload the archive to OpenAI for validation. It remains an OpenAI
+   **draft status** until submitted, approved, and published.
 3. Continue resource/abuse testing without flooding the shared free host;
    complete publisher verification and a reviewer-accessible demonstration.
 4. Run the five positive and three negative prompts through ChatGPT, record
