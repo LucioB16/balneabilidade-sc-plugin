@@ -13,6 +13,12 @@ Copy `metadata.template.json` to the ignored `submission/metadata.json` and set:
 - the truthful commerce declaration and description;
 - intended country codes, or `[]` only if all available countries are intended.
 
+Draft policy pages and a manual GitHub Pages workflow are staged under
+`site/`. Before submission, review [the legal release checklist](../docs/LEGAL_REVIEW.md),
+confirm the responsible identity/private contact and Enzonic log retention,
+remove all draft notices, enable Pages, run the manual publish workflow and
+verify both HTTPS URLs. Proposed URLs are **not yet valid submission facts**.
+
 The website and support links in `plugin/plugin.json` point to the public
 repository and its issue tracker. Check both URLs again before submission.
 The MCP URL is passed separately to the archive builder and must be a stable,
