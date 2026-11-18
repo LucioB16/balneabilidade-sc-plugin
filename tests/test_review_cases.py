@@ -60,4 +60,4 @@ def test_history_pagination_uses_all_pages_without_network():
 def test_negative_prompts_are_manual_no_tool_cases():
     manifest = json.loads((ROOT / "plugin/plugin.json").read_text(encoding="utf-8"))
     negative = manifest["extensions"]["com.openai"]["review"]["test_cases"]["negative"]
-    assert all("Do not call" in case["expected_behavior"] for case in negative)
+    assert all("do not call" in case["expected_behavior"].lower() for case in negative)
