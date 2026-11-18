@@ -38,7 +38,15 @@ HTTPS privacy and terms URLs for an MCP listing.
 - The host or upstream networks can process connection metadata that this
   application itself does not intentionally log.
 - Source attribution: <https://balneabilidade.ima.sc.gov.br/>.
-- Enzonic privacy: <https://enzonic.com/legal/privacy>.
+- Enzonic privacy: <https://enzonic.com/legal/privacy>. The current
+  [Enzonic privacy policy](https://enzonic.com/es/legal/privacy) describes
+  container configurations and console logs, latency diagnostics, hashed
+  IP addresses for DDoS mitigation/routing, and Cloudflare as an
+  infrastructure provider. **It does not clearly state a retention period
+  for console/ingress logs on this Python Web o app instance.**
+  The retention table on the separate Enzonic Deploy service must not be
+  assumed to apply here. Request written clarification from Enzonic before
+  representing any technical-log retention as fact.
 - GitHub privacy: <https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement>.
 
 ## Blocking questions before publishing or submitting
