@@ -31,7 +31,7 @@ class DomainChallengeTests(unittest.TestCase):
         self.assertEqual(post.status_code, 405)
 
     def test_invalid_multiline_token_is_not_served(self) -> None:
-        with patch.dict("os.environ", {"OPENAI_APPS_CHALLENGE_TOKEN": "a\\nb"}):
+        with patch.dict("os.environ", {"OPENAI_APPS_CHALLENGE_TOKEN": "a" + chr(10) + "b"}):
             with TestClient(app, base_url="http://127.0.0.1") as client:
                 response = client.get("/.well-known/openai-apps-challenge")
         self.assertEqual(response.status_code, 404)
