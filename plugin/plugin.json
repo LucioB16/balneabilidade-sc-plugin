@@ -30,7 +30,7 @@
               "description": "Latest status with municipality disambiguation and dated source evidence.",
               "prompt": "¿Está apta para bañarse Praia do Perequê, en Porto Belo?",
               "tools_triggered": "search_beaches, get_bathing_status",
-              "expected_behavior": "Call search_beaches with query=Praia do Perequê and municipality=Porto Belo, then get_bathing_status with beach=Praia de Perequê and municipality=Porto Belo. Report each returned sampling point and its published verdict, sample date, bulletin date, source, and freshness. Do not call it real-time."
+              "expected_behavior": "Call search_beaches with query=Perequê and municipality=Porto Belo to resolve the user-facing alias 'Praia do Perequê' to the IMA/SC canonical beach 'Praia de Perequê'. Then call get_bathing_status with beach=Praia de Perequê and municipality=Porto Belo. Report every returned sampling point, classification, sample and bulletin dates, source and freshness; never imply the results are real-time."
             },
             {
               "description": "Point-level improper results for a named Praia Brava.",
@@ -41,8 +41,8 @@
             {
               "description": "Complete inclusive calendar-year history for Campeche.",
               "prompt": "Mostrame el historial de balneabilidad de Campeche durante 2025, en Florianópolis.",
-              "tools_triggered": "get_bathing_history",
-              "expected_behavior": "Call get_bathing_history with beach=Campeche, municipality=Florianópolis, from_date=2025-01-01, to_date=2025-12-31. Summarize returned measurements with dates and point identities; distinguish missing years from unavailable data and do not invent entries."
+              "tools_triggered": "search_beaches, get_bathing_history",
+              "expected_behavior": "Call search_beaches with query=Campeche and municipality=Florianópolis. Use the canonical result Praia do Campeche for get_bathing_history, with from_date=2025-01-01 and to_date=2025-12-31. Follow next_cursor until exhausted if a complete-year history is requested. Summarize dated point-specific samples without inventing entries and distinguish years without data from unavailable years."
             },
             {
               "description": "Portuguese latest published status for a Bombinhas beach.",
