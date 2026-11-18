@@ -1,7 +1,9 @@
 # Public legal pages — review and deployment checklist
 
-Prepared on **2026-11-17**. These pages are **drafts**, not approved legal
-statements or currently accessible public policies.
+Prepared on **2026-11-17**, revised on **2026-11-18**. The operator
+approved the legal text on 2026-11-18. Draft banners and noindex metadata
+were removed from all pages. **GitHub Pages has not yet been deployed or
+verified**, so projected URLs are not yet live.
 
 The independent Balneabilidade SC project uses Enzonic for the public MCP
 endpoint, IMA/SC for published bathing-water information, and the proposed
@@ -54,15 +56,15 @@ HTTPS privacy and terms URLs for an MCP listing.
   internal review evidence; the repo does not contain the original email.
 - GitHub privacy: <https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement>.
 
-## Blocking questions before publishing or submitting
+## Operator approvals and publication considerations
 
-1. **Service operator (provided):** Lucio Bottacin. The operator gave this
-   name for the legal pages. **Not yet verified** against the name registered
-   in the OpenAI developer dashboard; check the exact verified legal identity
-   before submission.
-2. **Direct privacy contact (provided):** luciobotacin@gmail.com.
-   The operator provided this address for public display. Verify the mailbox
-   is monitored and can receive privacy-related inquiries before publication.
+1. **Service operator (approved):** Lucio Bottacin. The operator gave this
+   name for the legal pages. The operator supplied a screenshot of individual approval in the
+   OpenAI developer dashboard. Confirm the exact name displayed there before
+   submission.
+2. **Direct privacy contact (approved):** luciobotacin@gmail.com.
+   The operator provided this address for public display and approved its
+   use. The email thread with Enzonic demonstrates access to this mailbox.
    GitHub Issues remain public and **must not** be used to submit sensitive
    personal information or data-subject requests.
 3. **Enzonic support response received (2026-11-18):** the operator supplied
@@ -75,20 +77,19 @@ HTTPS privacy and terms URLs for an MCP listing.
 4. **Hosting acceptable-use inquiry:** ANSWERED in writing for this particular
    service, according to the operator-provided email. No general exemption
    from future policy changes or limits has been granted.
-5. **Law and jurisdiction:** have the operator review applicable privacy
-   rules (including Brazil's LGPD if relevant), legal capacity, limitations
-   and contact details; translations should be checked for legal consistency.
-6. **Data reuse:** verify any attribution/permissions required for the
-   official IMA/SC data. A public source does not automatically grant any
-   particular reuse license.
+5. **Law and jurisdiction:** the operator approved the drafted text and
+   translations. This is operator approval, not a legal opinion on all
+   applicable laws (including Brazil's LGPD where relevant).
+6. **Data reuse:** the operator approved the texts' independent-project
+   attribution. Any future bulk redistribution or reuse must separately
+   respect the IMA/SC source's terms; public data does not automatically
+   grant a general data license.
 
 ## Publication procedure — manual, not automatic
 
-1. Review and resolve every blocking item above with verifiable facts.
-2. Update the three privacy pages and three terms pages consistently.
-   Replace the draft banners and `noindex,nofollow` metadata on all pages.
-   The manual deployment workflow deliberately refuses to publish while
-   any legal page is still marked as draft.
+1. Operator approval and final six-page revisions: **completed 2026-11-18**.
+   Keep the manual deployment check that rejects draft banners/noindex.
+2. Check that `python scripts/check_legal_site.py --publish` succeeds in CI.
 3. Merge the legal-site PR into `main`.
 4. In GitHub repository **Settings → Pages → Build and deployment**, select
    **GitHub Actions** as the publishing source (if not already enabled).
@@ -109,6 +110,6 @@ The draft pages now identify **Lucio Bottacin** as the service operator and
 provide the direct email **luciobotacin@gmail.com** for privacy-related
 inquiries. These details were provided by the operator for public display.
 This does **not** establish independent verification of legal identity or
-of control over the email inbox. The Enzonic usage/retention inquiry has received an affirmative response.
-The operator still needs to review the final text, applicable law/data reuse,
-and the manual GitHub Pages publication steps.
+of control over the email inbox. The Enzonic usage/retention inquiry has received an affirmative response,
+and the operator approved the legal text on 2026-11-18. Manual GitHub Pages
+publication and checking the six HTTPS URLs are still required.

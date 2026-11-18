@@ -90,8 +90,8 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   handshake validation against the pinned server.
 - `docs/`: Enzonic runbook, data-handling facts, publication status, and
   [legal-page review checklist](docs/LEGAL_REVIEW.md).
-- `site/`: draft GitHub Pages privacy/terms pages in pt-BR, en and es-AR;
-  these are **not public yet** and must be approved before deployment.
+- `site/`: approved GitHub Pages privacy/terms pages in pt-BR, en and es-AR;
+  publication through the manual workflow is still pending.
 - `scripts/check_remote_mcp.py`: opt-in external HTTPS/MCP health check for
   operator-controlled restart validation.
 

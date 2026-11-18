@@ -28,9 +28,10 @@ Last checked: 2026-11-18.
   passed initialize, tool list and a real IMA/SC status call on 2026-11-17
   (America/Argentina/Cordoba). A transient earlier HTTP 403 is no longer
   reproduced; its root cause was not conclusively identified.
-- Draft privacy and terms pages in pt-BR, English and es-AR, plus a manual-only
-  GitHub Pages deployment workflow, are prepared in a dedicated legal PR.
-  They are **not yet published or approved as legal statements**.
+- Privacy and terms pages in pt-BR, English and es-AR were **approved by the
+  operator on 2026-11-18**. Draft banners and noindex metadata have been
+  removed in PR #4. A manual-only GitHub Pages deployment workflow is
+  prepared, but the pages are **not yet deployed or HTTPS-verified**.
 - The archive builder rejects placeholder and non-HTTPS submission values and
   requires missing publication metadata to be completed deliberately.
 
@@ -61,7 +62,8 @@ Last checked: 2026-11-18.
   See [review evidence](REVIEW_VALIDATION.md). Model-level tool selection and
   three negative no-tool scenarios still require a real ChatGPT recorded review;
   no reviewer video exists yet. See [recording guide](REVIEW_DEMO.md).
-- The public policy and terms pages are **drafts only**, not yet deployed.
+- The operator approved the public privacy and terms pages on 2026-11-18,
+  but GitHub Pages publishing and URL checks are **not yet complete**.
   The operator's screenshot records Enzonic's permission and no-retention
   statement. The technical categories of transient processing or independent
   network providers were not detailed. The OpenAI individual verification
@@ -77,8 +79,9 @@ Last checked: 2026-11-18.
 1. Record Enzonic's written approval and no-retention statement (done in
    the legal review checklist); review the final legal text, attribution and
    contact information before publishing. See [legal review](LEGAL_REVIEW.md).
-2. Approve the translations, remove draft banners and disable noindex; deploy
-   GitHub Pages manually and verify all six live URLs.
+2. Merge the approved legal PR; configure GitHub Pages to deploy from
+   GitHub Actions, manually run the Pages workflow and verify all six
+   HTTPS URLs before using them in submission metadata.
 3. Continue resource/abuse testing without flooding the shared free host;
    complete publisher verification and a reviewer-accessible demonstration.
 4. Run the five positive and three negative prompts through ChatGPT, record
