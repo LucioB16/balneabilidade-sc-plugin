@@ -98,7 +98,15 @@ use [GitHub Issues](https://github.com/LucioB16/balneabilidade-sc-plugin/issues)
   operator-controlled restart validation.
 
 The submission archive uses the public production MCP URL, not a preview or
-development tunnel. It can now produce an uploadable **draft** with the
+development tunnel. It produces an uploadable **package** with the
 approved legal URLs and the documented non-commerce declaration, while
 leaving the demo and country targeting unspecified until those decisions are
 available. Final review still requires the real video and completed settings.
+
+## Listing wording clarification (0.1.1)
+
+The listing and the es-AR/pt-BR subtitles now describe **bathing-water results**
+without calling the plugin itself “official”. The source data comes from
+IMA/SC, but Balneabilidade SC is an **independent, unaffiliated plugin**.
+Version 0.1.1 only changes public metadata and release notes; the remotely
+hosted MCP endpoint and its tools are unchanged.
